@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientSide\ClientController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,3 +14,6 @@ Route::get('/login', function () {
 Route::get('/register', function() {
     return view('AdminSide.auth.Register');
 })->name('registerPage');
+
+
+Route::post('/RegisterClient', [ClientController::class, 'RegisterClient'])->name('registerClient');

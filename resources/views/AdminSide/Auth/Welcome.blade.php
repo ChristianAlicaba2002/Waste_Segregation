@@ -217,7 +217,12 @@
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(68, 219, 113, 0.2);
         }
-
+        .active{
+            background: rgba(255, 255, 255, 0.2);
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
 
     </style>
 </head>
@@ -225,12 +230,12 @@
 
     <nav class="navbar">
         <div class="menu">
-            <a href="#home">Home</a>
-            <a href="#about-us">About Us</a>
-            <a href="#mission">Mission</a>
-            <a href="#objectives">Objectives</a>
-            <a href="#product-showcase">Product Showcase</a>
-            <a href="#contact-us">Contact Us</a>
+            <a href="#home" class="{{ request()->is('#home') ? 'active' : '' }}">Home</a>
+            <a href="#about-us" class="{{ request()->is('#about-us') ? 'active' : '' }}">About Us</a>
+            <a href="#mission" class="{{ request()->is('#mission') ? 'active' : '' }}">Mission</a>
+            <a href="#objectives" class="{{ request()->is('#objectives') ? 'active' : '' }}">Objectives</a>
+            <a href="#product-showcase" class="{{ request()->is('#product-showcase') ? 'active' : '' }}">Product Showcase</a>
+            <a href="#contact-us" class="{{ request()->is('#contact-us') ? 'active' : '' }}">Contact Us</a>
         </div>
         <a href="{{ route('loginPage') }}" class="btn-signin" >Sign In</a>
     </nav>

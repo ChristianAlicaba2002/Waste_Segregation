@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('disposal_id')->primary();
             $table->string('item_id')->contrained('waste_item');
             $table->string('record_id');
-            $table->string('facility_id')->constraint('home');
+            $table->string('facility_id')->constrained('home');
             $table->timestamp('disposal_time');
         });
     }
