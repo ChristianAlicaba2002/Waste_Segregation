@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Waste Segregation Register</title>
     <style>
         body {
@@ -133,13 +134,6 @@
         <i class="fas fa-circle-chevron-left"></i>
     </a>
 
-    <!-- @if (session('usernameExists'))
-        <div style="color: red; text-align: center; margin-bottom: 1rem;">{{ session('usernameExists') }}</div>
-    @elseif (session('passwordMismatch'))
-        <div style="color: red; text-align: center; margin-bottom: 1rem;">{{ session('passwordMismatch') }}</div>
-    @elseif (session('success'))
-        <div style="color: green; text-align: center; margin-bottom: 1rem;">{{ session('success') }}</div>
-    @endif -->
 
     <div class="page-container">
         <div class="left-section">
@@ -183,23 +177,6 @@
         </div>
     </div>
 
-    <script>
-
-        // document.addEventListener('DOMContentLoaded' , ()=> {
-        //     document.getElementById('SubmitForm').addEventListener('click' , (e) =>{
-        //     e.preventDefault()
-
-        //     const first_name = document.getElementById('first_name')
-        //     const last_name = document.getElementById('last_name')
-        //     const username = document.getElementById('username')
-        //     const password = document.getElementById('password')
-        //     const confirm_password = document.getElementById('confirm_password')
-
-
-        //     })
-        // })
-
-
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

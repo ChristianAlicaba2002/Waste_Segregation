@@ -29,12 +29,12 @@ class ClientController extends Controller
 
         if($request->confirm_password != $request->password)
         {
-            return redirect()->back()->with('passwordMismatch', 'Passwords do not match');
+            return redirect('/register')->with('passwordMismatch', 'Passwords do not match');
         }
 
         if(DB::table('clients')->where('username', $request->username)->exists())
         {
-            return redirect()->back()->with('usernameExists', 'Username already exists');
+            return redirect('/register')->with('usernameExists', 'Username already exists');
         }
 
         $client_id = $this->getGenerateUserID();
@@ -47,7 +47,7 @@ class ClientController extends Controller
             $request->password
         );
 
-        return view('/login')->with('success', 'Account created successfully');
+        return redirect('/login')->with('success', 'Account created successfully');
 
     }
 

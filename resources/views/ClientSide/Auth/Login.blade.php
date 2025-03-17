@@ -6,6 +6,9 @@
     <title>Waste Segregation Login</title>
     <link rel="shortcut icon" href="{{ asset('img/finallogo.png') }}" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <style>
@@ -149,11 +152,84 @@
         font-size: 3rem;
         margin-bottom: 1rem;
     }
+
+    .alert-container {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+    }
+
+    .alert-center {
+        position: fixed;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        width: 80%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        animation: slideIn 0.5s ease-out;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    }
 </style>
 <body>
     <a href="{{ route('view') }}" class="back-button">
         <i class="fas fa-circle-chevron-left"></i>
     </a>
+
+    <div class="alert-container">
+        @if (session('success'))
+            <div class="alert alert-success" id="successAlert">
+                <i class="bi bi-check-circle alert-icon"></i>
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
+    </div>
 
     <div class="page-container">
         <div class="left-section">
@@ -164,7 +240,7 @@
         <div class="login-container">
             <div class="eco-icon">♻️</div>
             <h1>Welcome Back!</h1>
-            <form action="{{ route('loginPage') }}" method="POST">
+            <form action="" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -180,5 +256,14 @@
         </div>
     </div>
 
+    <script>
+         setTimeout(() => {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.style.animation = 'slideOut 0.5s ease-out forwards';
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 5000);
+    </script>
 </body>
 </html>
