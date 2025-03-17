@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Waste Segregation Register</title>
     <style>
         body {
@@ -106,9 +107,31 @@
             font-size: small;
             margin-top: .30rem;
         }
+        .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color:rgb(106, 218, 111);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 2rem;
+        margin-left: 5rem;
+        margin-top: 1.5rem;
+        font-weight: bold;
+    }
+
+    .back-button:hover {
+        color:rgba(18, 87, 23, 0.88);
+    }
     </style>
 </head>
+
 <body>
+<a href="{{ route('view') }}" class="back-button">
+        <i class="fas fa-circle-chevron-left"></i>
+    </a>
 
     <!-- @if (session('usernameExists'))
         <div style="color: red; text-align: center; margin-bottom: 1rem;">{{ session('usernameExists') }}</div>

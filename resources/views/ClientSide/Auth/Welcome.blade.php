@@ -16,8 +16,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to right, #74d47a, #66bb6a);
-            padding: 1.2rem 2.5rem;
+            background: linear-gradient(to right,rgb(44, 197, 54),rgb(173, 235, 176));
+            padding: 0.8rem 2rem;
             color: white;
             position: sticky;
             top: 0;
@@ -27,33 +27,46 @@
 
         .navbar .menu {
             display: flex;
-            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            gap: 3rem;
+            margin-left: 50px;
         }
 
         .navbar .menu a {
             position: relative;
-            margin-left: 1.5rem;
             text-decoration: none;
             color: white;
             font-weight: 500;
             padding: 0.5rem 1rem;
             transition: all 0.3s ease;
-            border-radius: 8px;
+            text-align: center;
         }
 
         .navbar .menu a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+            background: none;
+            box-shadow: none;
+            transform: none;
         }
 
         .navbar .menu a::after {
-            display: none;
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .navbar .menu a:hover::after {
+            width: 100%;
         }
 
         .navbar .btn-signin {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.26);
             border: 2px solid white;
             padding: 0.8rem 1.5rem;
             border-radius: 25px;
@@ -69,7 +82,7 @@
             background-color: white;
             color: #66bb6a;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(124, 245, 124, 0.75);
             text-decoration: none;
         }
 
@@ -154,6 +167,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
+        }
+
+        .section p {
+            text-align: center;
+            margin: 0 auto;
         }
 
         .cards-container {
@@ -224,11 +243,57 @@
             box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
 
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.1);
+        }
+
+        .logo-link img {
+            margin-left: 1rem;
+            width: 65px;
+            height: 65px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .section .btn-signin {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid #66bb6a;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            color: #66bb6a;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .section .btn-signin:hover {
+            background-color: #66bb6a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
     </style>
 </head>
 <body>
 
     <nav class="navbar">
+        <a href="#" class="logo-link">
+            <img src="{{ asset('img/finallogo.png') }}" alt="Logo">
+        </a>
         <div class="menu">
             <a href="#home" class="{{ request()->is('#home') ? 'active' : '' }}">Home</a>
             <a href="#about-us" class="{{ request()->is('#about-us') ? 'active' : '' }}">About Us</a>
@@ -237,7 +302,10 @@
             <a href="#product-showcase" class="{{ request()->is('#product-showcase') ? 'active' : '' }}">Product Showcase</a>
             <a href="#contact-us" class="{{ request()->is('#contact-us') ? 'active' : '' }}">Contact Us</a>
         </div>
-        <a href="{{ route('loginPage') }}" class="btn-signin" >Sign In</a>
+        <div class="auth-buttons">
+            <a href="{{ route('loginPage') }}" class="btn-signin">Sign In</a>
+            <a href="{{ route('registerPage') }}" class="btn-signin">Sign Up</a>
+        </div>
     </nav>
 
     <div class="content">
@@ -255,6 +323,7 @@
                 <i class="fas fa-newspaper"></i>
                 <h3>Paper Items</h3>
                 <div class="stat">800</div>
+                <!-- number of items collected from database -->
             </div>
             <div class="card">
                 <i class="fas fa-wine-bottle"></i>
@@ -271,22 +340,19 @@
 
     <section id="about-us" class="section">
         <h1>About Us</h1>
-        <p>Your about us content here...</p>
+        <a href="{{ route('adminLogin') }}" class="btn-signin">ADMIN</a>
     </section>
 
     <section id="mission" class="section">
         <h1>Our Mission</h1>
-        <p>Your mission content here...</p>
     </section>
 
     <section id="objectives" class="section">
         <h1>Our Objectives</h1>
-        <p>Your objectives content here...</p>
     </section>
 
     <section id="product-showcase" class="section">
         <h1>Product Showcase</h1>
-        <p>Your product showcase content here...</p>
     </section>
 
     <section id="contact-us" class="section">
