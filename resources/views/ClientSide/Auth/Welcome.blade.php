@@ -1,22 +1,22 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waste Segregation</title>
-    <link rel="shortcut icon" href="{{ asset('img/finallogo.png') }}" type="image/png">
-
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: white;
+            background: linear-gradient(135deg, #f0f7f0 0%, #e8f5e9 100%);
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to right,rgb(75, 202, 84),rgb(157, 248, 162));
+            background: linear-gradient(to right, #74d47a, #66bb6a);
             padding: 1.2rem 2.5rem;
             color: white;
             position: sticky;
@@ -27,44 +27,29 @@
 
         .navbar .menu {
             display: flex;
-            align-items: center;
             gap: 2rem;
         }
 
         .navbar .menu a {
             position: relative;
+            margin-left: 1.5rem;
             text-decoration: none;
             color: white;
             font-weight: 500;
-            padding: 0.8rem 1.2rem;
+            padding: 0.5rem 1rem;
             transition: all 0.3s ease;
             border-radius: 8px;
-            margin: 0;
         }
 
-        .navbar .menu a:not(.logo-link)::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 5px;
-            left: 50%;
-            background-color: white;
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-        }
-
-        .navbar .menu a:not(.logo-link):hover {
+        .navbar .menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
             color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
 
-        .navbar .menu a:not(.logo-link):hover::after {
-            width: 80%;
-        }
-
-        .navbar .menu img {
-            display: block;
-            margin: auto 0;
+        .navbar .menu a::after {
+            display: none;
         }
 
         .navbar .btn-signin {
@@ -232,44 +217,11 @@
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(68, 219, 113, 0.2);
         }
-
-        .auth-buttons {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .navbar .menu .logo-link {
-            padding: 0;
-            background: none;
-            border-radius: 0;
-        }
-
-        .navbar .menu .logo-link:hover {
-            background: none;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .btn-admin {
-            background-color: rgba(255, 255, 255, 0.2);
-            border: 2px solid #66bb6a;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            color: #66bb6a;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-size: 1rem;
-        }
-
-        .btn-admin:hover {
-            background-color: #66bb6a;
-            color: white;
+        .active{
+            background: rgba(255, 255, 255, 0.2);
+            color: black;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
 
     </style>
@@ -278,20 +230,14 @@
 
     <nav class="navbar">
         <div class="menu">
-            <a href="{{ route('view') }}" class="logo-link">
-                <img src="{{ asset('img/finallogo.png') }}" alt="recycle logo" style="width: 60px; height: 60px; margin-right: 15px;">
-            </a>
-            <a href="#home">Home</a>
-            <a href="#about-us">About Us</a>
-            <a href="#mission">Mission</a>
-            <a href="#objectives">Objectives</a>
-            <a href="#product-showcase">Product Showcase</a>
-            <a href="#contact-us">Contact Us</a>
+            <a href="#home" class="{{ request()->is('#home') ? 'active' : '' }}">Home</a>
+            <a href="#about-us" class="{{ request()->is('#about-us') ? 'active' : '' }}">About Us</a>
+            <a href="#mission" class="{{ request()->is('#mission') ? 'active' : '' }}">Mission</a>
+            <a href="#objectives" class="{{ request()->is('#objectives') ? 'active' : '' }}">Objectives</a>
+            <a href="#product-showcase" class="{{ request()->is('#product-showcase') ? 'active' : '' }}">Product Showcase</a>
+            <a href="#contact-us" class="{{ request()->is('#contact-us') ? 'active' : '' }}">Contact Us</a>
         </div>
-        <div class="auth-buttons">
-            <a href="{{ route('loginPage') }}" class="btn-signin">Sign In</a>
-            <a href="{{ route('registerPage') }}" class="btn-signin">Sign Up</a>
-        </div>
+        <a href="{{ route('loginPage') }}" class="btn-signin" >Sign In</a>
     </nav>
 
     <div class="content">
@@ -325,23 +271,22 @@
 
     <section id="about-us" class="section">
         <h1>About Us</h1>
-        <p>temporary pa ni ha</p>
-        <a href="{{ route('adminLogin') }}" class="btn-admin">ADMIN</a>
+        <p>Your about us content here...</p>
     </section>
 
     <section id="mission" class="section">
         <h1>Our Mission</h1>
-        <p>wala</p>
+        <p>Your mission content here...</p>
     </section>
 
     <section id="objectives" class="section">
         <h1>Our Objectives</h1>
-        <p>wala sa</p>
+        <p>Your objectives content here...</p>
     </section>
 
     <section id="product-showcase" class="section">
         <h1>Product Showcase</h1>
-        <p>empty</p>
+        <p>Your product showcase content here...</p>
     </section>
 
     <section id="contact-us" class="section">

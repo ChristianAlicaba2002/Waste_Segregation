@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ asset('img/finallogo.png') }}" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Waste Segregation Register</title>
     <style>
         body {
@@ -103,30 +101,23 @@
         .login-link:hover {
             text-decoration: underline;
         }
-        .back-button {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        color:rgb(106, 218, 111);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 2rem;
-        margin-left: 5rem;
-        margin-top: 1.5rem;
-        font-weight: bold;
-    }
-
-    .back-button:hover {
-        color:rgba(18, 87, 23, 0.88);
-    }
+        .ErrorMessage{
+            color: red;
+            font-size: small;
+            margin-top: .30rem;
+        }
     </style>
 </head>
 <body>
-<a href="{{ route('view') }}" class="back-button">
-        <i class="fas fa-circle-chevron-left"></i>
-    </a>
+
+    <!-- @if (session('usernameExists'))
+        <div style="color: red; text-align: center; margin-bottom: 1rem;">{{ session('usernameExists') }}</div>
+    @elseif (session('passwordMismatch'))
+        <div style="color: red; text-align: center; margin-bottom: 1rem;">{{ session('passwordMismatch') }}</div>
+    @elseif (session('success'))
+        <div style="color: green; text-align: center; margin-bottom: 1rem;">{{ session('success') }}</div>
+    @endif -->
+
     <div class="page-container">
         <div class="left-section">
             <img src="{{ asset('img/trash.gif') }}">
@@ -135,32 +126,57 @@
         </div>
         <div class="register-container">
             <h1>Create an Account</h1>
-            <form action="{{ route('registerPage') }}" method="POST">
+            <form action="{{route('registerClient')}}" method="POST" id="SubmitForm">
                 @csrf
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required placeholder="Enter your username">
-                </div>
-                <div class="form-group">
                     <label for="first_name">First Name</label>
-                    <input type="text" id="first_name" name="first_name" required placeholder="Enter your first name">
+                    <input type="text" id="first_name" name="first_name" required placeholder="Enter your first name" required>
                 </div>
                 <div class="form-group">
                     <label for="last_name">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" required placeholder="Enter your last name">
+                    <input type="text" id="last_name" name="last_name" required placeholder="Enter your last name" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter your username" required>
+                    @if (session('usernameExists'))
+                        <label class="ErrorMessage" for="">{{ session('usernameExists') }}</label>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                    <input type="password" id="password" name="password" required placeholder="Enter your password" required>
                 </div>
                 <div class="form-group">
                     <label for="confirm_password">Confirm Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password">
+                    <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password" required>
+                    @if (session('passwordMismatch'))
+                           <label  class="ErrorMessage" for="">{{ session('passwordMismatch')}}</label>
+                    @endif
                 </div>
                 <button type="submit" class="btn">Register</button>
             </form>
             <a href="{{ route('loginPage') }}" class="login-link">Already have an account? Login here</a>
         </div>
     </div>
+
+    <script>
+
+        // document.addEventListener('DOMContentLoaded' , ()=> {
+        //     document.getElementById('SubmitForm').addEventListener('click' , (e) =>{
+        //     e.preventDefault()
+
+        //     const first_name = document.getElementById('first_name')
+        //     const last_name = document.getElementById('last_name')
+        //     const username = document.getElementById('username')
+        //     const password = document.getElementById('password')
+        //     const confirm_password = document.getElementById('confirm_password')
+
+
+        //     })
+        // })
+
+
+    </script>
 </body>
 </html>
