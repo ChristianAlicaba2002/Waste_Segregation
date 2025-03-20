@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waste Segregation Login</title>
+    <title>Segregation Trash Bin Log In</title>
     <link rel="shortcut icon" href="{{ asset('img/finallogo.png') }}" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -193,6 +193,12 @@
         border: 1px solid #c3e6cb;
     }
 
+    .alert-danger {
+        background-color: red;
+        color: white;
+        border: 1px solid #c3e6cb;
+    }
+
     @keyframes slideIn {
         from {
             transform: translateY(-100%);
@@ -231,16 +237,25 @@
         @endif
     </div>
 
+    <div class="alert-container">
+        @if (session('error'))
+            <div class="alert alert-danger" id="successAlert">
+                <i class="bi bi-check-circle alert-icon"></i>
+                <span>{{ session('error') }}</span>
+            </div>
+        @endif
+    </div>
+
     <div class="page-container">
         <div class="left-section">
             <img src="{{ asset('img/ecoshield.gif') }}">
-            <h2>Waste Segregation System</h2>
+            <h2>Segregation Trash Bin System</h2>
             <p>Your contribution matters! Log in now to join our mission for a cleaner, greener planet—because every step counts toward a sustainable future. 🌍</p>
         </div>
         <div class="login-container">
             <div class="eco-icon">♻️</div>
             <h1>Welcome Back!</h1>
-            <form action="" method="POST">
+            <form action="{{route('loginClient')}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="username">Username</label>

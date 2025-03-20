@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('item_id')->primary();
             $table->string('category_id')->contrained('waste_category');
             $table->string('item_category')->contrained('waste_category');
-            $table->timestamp('item_segregated');
+            $table->timestamp('time_segregated');
         });
     }
 

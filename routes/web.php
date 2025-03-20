@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ClientSide\ClientController;
+use App\Http\Middleware\CheckClient;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientSide\ClientController;
 
 Route::get('/', function () {
     return view('ClientSide.auth.Welcome');
@@ -15,9 +16,15 @@ Route::get('/register', function() {
     return view('ClientSide.auth.Register');
 })->name('registerPage');
 
-
-Route::post('/RegisterClient', [ClientController::class, 'RegisterClient'])->name('registerClient');
-
 Route::get('/adminlogin', function() {
     return view('AdminSide.auth.Login');
 })->name('adminLogin');
+
+// Route::middleware('CheckClient')->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     });
+// });
+
+Route::post('/RegisterClient', [ClientController::class, 'RegisterClient'])->name('registerClient');
+Route::post('/LoginClient', [ClientController::class , 'LoginClient'])->name('loginClient');
