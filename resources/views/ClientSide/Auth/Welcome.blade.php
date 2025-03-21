@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>Segregation Trash Bin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #f0f7f0 0%, #e8f5e9 100%);
+        }
+        html{
+            scroll-behavior: smooth;
         }
 
         .navbar {
@@ -317,23 +320,54 @@
     </div>
 
     <section id="home" class="section">
-        <h1>Waste Management Statistics</h1>
+        <h1>Segregation Trash Bin Statistics</h1>
+
+        @php
+            $categories = DB::table('waste_disposal_record')->get();
+            $paperCount = $categories->where('category_name', 'Paper')->count();
+            $plasticCount = $categories->where('category_name', 'Plastic')->count();
+            $metalCount = $categories->where('category_name', 'Metal')->count();
+        @endphp
+
         <div class="cards-container">
-            <div class="card">
-                <i class="fas fa-newspaper"></i>
-                <h3>Paper Items</h3>
-                <div class="stat">800</div>
-            </div>
-            <div class="card">
-                <i class="fas fa-wine-bottle"></i>
-                <h3>Plastic Items</h3>
-                <div class="stat">800</div>
-            </div>
-            <div class="card">
-                <i class="fas fa-cog"></i>
-                <h3>Metal Items</h3>
-                <div class="stat">800</div>
-            </div>
+
+            @if($categories->count() > 0)
+                <div class="card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Paper Items</h3>
+                    <div class="stat">{{ number_format($paperCount) }}</div>
+                    <!-- number of items collected from database -->
+                </div>
+                <div class="card">
+                    <i class="fas fa-wine-bottle"></i>
+                    <h3>Plastic Items</h3>
+                    <div class="stat">{{ number_format($plasticCount) }}</div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-cog"></i>
+                    <h3>Metal Items</h3>
+                    <div class="stat">{{ number_format($metalCount) }}</div>
+                </div>
+            @else
+                <div class="card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Paper Items</h3>
+                    <div class="stat">0</div>
+                    <!-- number of items collected from database -->
+                </div>
+                <div class="card">
+                    <i class="fas fa-wine-bottle"></i>
+                    <h3>Plastic Items</h3>
+                    <div class="stat">0</div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-cog"></i>
+                    <h3>Metal Items</h3>
+                    <div class="stat">0</div>
+                </div>
+            @endif
+
+
         </div>
     </section>
 

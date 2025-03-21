@@ -5,9 +5,10 @@ namespace App\Http\Controllers\ClientSide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Application\ClientSide\RegisterClient;
-
 
 class ClientController extends Controller
 {
@@ -29,12 +30,17 @@ class ClientController extends Controller
 
         if($request->confirm_password != $request->password)
         {
-            return redirect('/register')->with('passwordMismatch', 'Passwords do not match');
+            return redirect('/register')->with('passwordMismatch', 'Password does not match');
         }
 
         if(DB::table('clients')->where('username', $request->username)->exists())
         {
             return redirect('/register')->with('usernameExists', 'Username already exists');
+        }
+
+        if(strlen($request->password) < 8)
+        {
+            return redirect('/register')->with('passlengthrequired', 'Password must be at least 8 characters');
         }
 
         $client_id = $this->getGenerateUserID();
@@ -44,7 +50,7 @@ class ClientController extends Controller
             $request->first_name,
             $request->last_name,
             $request->username, 
-            $request->password
+            Hash::make($request->password)
         );
 
         return redirect('/login')->with('success', 'Account created successfully');
@@ -68,6 +74,31 @@ class ClientController extends Controller
         return $result;
     }
 
+    public function LoginClient(Request $request)
+    {
+        $credentials = Validator::make($request->all(), [
+            'username' => 'required',
+            'password' => 'required'
+        ]);
 
+        if(empty($request->username) && empty($request->password))
+        {
+            return redirect('/login')->with('error', 'Please required all fields');
+        }
+       
+        if(!Auth::guard('client')->attempt($request->only('username','password')))
+        {
+            return redirect('/login')->with('error', 'Account does not exist');
+        }
+    
+        if(Auth::guard('client')->attempt($request->only('username','password')))
+        {
+            $request->session()->regenerate();
+            Auth::guard('client')->user();
+            return redirect('/login')->with('success', 'Welcome Back !');
+        }
+
+    }
 
 }
+    

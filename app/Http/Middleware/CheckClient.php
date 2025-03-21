@@ -17,7 +17,7 @@ class CheckClient
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('client')->check()) {
-            return redirect('/login')->with('error', 'Please login as Client first');
+            return redirect('/login')->with('error', 'Please log to continue');
         }
         return $next($request);
     }
