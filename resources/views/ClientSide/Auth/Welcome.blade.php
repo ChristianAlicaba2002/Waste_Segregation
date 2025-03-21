@@ -323,7 +323,6 @@
                 <i class="fas fa-newspaper"></i>
                 <h3>Paper Items</h3>
                 <div class="stat">800</div>
-                <!-- number of items collected from database -->
             </div>
             <div class="card">
                 <i class="fas fa-wine-bottle"></i>
