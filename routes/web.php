@@ -20,11 +20,6 @@ Route::get('/adminlogin', function() {
     return view('AdminSide.auth.Login');
 })->name('adminLogin');
 
-// Route::middleware('CheckClient')->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     });
-// });
 
 Route::post('/RegisterClient', [ClientController::class, 'RegisterClient'])->name('registerClient');
 Route::post('/LoginClient', [ClientController::class , 'LoginClient'])->name('loginClient');

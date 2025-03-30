@@ -89,19 +89,6 @@ class ClientController extends Controller
             return redirect('/login')->with('error', 'Please required all fields');
         }
 
-        // foreach($clients as $client)
-        // {
-        
-        //     if($request->username != $client->username)
-        //     {
-        //         return back()->with('error', 'Account does not exist');
-        //     }
-
-        //     if(!Hash::check($client->password , Hash::make($request->password)))
-        //     {
-        //         return back()->with('error', 'Password is incorrect');
-        //     }
-        // }
 
         if(!Auth::guard('client')->attempt($request->only('username','password')))   
         {

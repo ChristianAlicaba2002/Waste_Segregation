@@ -68,27 +68,7 @@
     </div>
 
     <script>
-        // document.getElementById('formAction').addEventListener('submit', (e)=> {
-        //     e.preventDefault()
-
-        //     // document.getElementById('formAction').action = '/LoginClient'
-        //     username = document.getElementById('username')
-        //     password = document.getElementById('password')
-
-        //     if(username.value !== '' || !password.value == '')
-        //     {    
-
-        //     }
-        //     else if(username.value == '' || password.value == '')
-        //     {
-        //         alert('input all fields')
-        //     }
-
-
-        // })
-
-
-
+    
          setTimeout(() => {
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(alert => {
