@@ -38,6 +38,9 @@ body {
     color: #1b5e20;
 }
 
+.eco-icon{
+    font-size: 100px;
+}
 .left-section {
     flex: 1;
     background-color: white;
@@ -116,6 +119,7 @@ input:focus {
     cursor: pointer;
     font-size: 1.2rem;
     color: #2e7d32;
+    display: none;
 }
 
 .btn {
@@ -147,15 +151,16 @@ input:focus {
 }
 
 .back-button {
-    position: fixed;
+    position: absolute;
     top: 10px;
-    left: 10px;
+    left: 50px;
     color: rgb(106, 218, 111);
     text-decoration: none;
     display: flex;
     align-items: center;
+    top: 2rem;
     gap: 5px;
-    font-size: 1.2rem;
+    font-size: 2.5rem;
     font-weight: bold;
 }
 
@@ -165,45 +170,34 @@ input:focus {
 
 .alert-container, .alert-center {
     position: fixed;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    width: 80%;
-    max-width: 350px;
+    width: 60%;
+    max-width: 300px;
     text-align: center;
+    padding-top: 0.5rem;
 }
 
 .alert-center {
-    top: 10%;
-    transform: translate(-50%, 0);
+    top: 0;
     max-width: 400px;
 }
 
 .alert {
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    animation: slideIn 0.5s ease-out;
+    animation: slideDown 0.5s ease-out;
 }
 
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-
-@keyframes slideIn {
+@keyframes slideDown {
     from {
         transform: translateY(-100%);
         opacity: 0;
@@ -213,6 +207,19 @@ input:focus {
         opacity: 1;
     }
 }
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f54856b0;
+    color: #721c24;
+    border: 1px solid rgba(230, 8, 26, 0.897);
+}
+
 
 @media screen and (max-width: 600px) {
     .page-container {
@@ -242,7 +249,7 @@ input:focus {
     }
 
     .back-button {
-        font-size: 1rem;
+        font-size: 3rem;
         left: 5px;
         top: 5px;
     }

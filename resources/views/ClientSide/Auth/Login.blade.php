@@ -78,25 +78,25 @@
         }, 5000);
 
         const passwordInput = document.getElementById("password");
-        const toggleIcon = document.getElementById("togglePassword");
+    const toggleIcon = document.getElementById("togglePassword");
+
+
+    toggleIcon.style.display = "none";
 
         passwordInput.addEventListener("input", function () {
-    if (this.value.length > 0) {
-        toggleIcon.style.display = "block";
-    } else {
-        toggleIcon.style.display = "none";
-    }
+        toggleIcon.style.display = this.value.length > 0 ? "block" : "none";
 });
 
-        toggleIcon.addEventListener("click", function () {
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        toggleIcon.classList.replace("fa-eye", "fa-eye-slash");
-    } else {
-        passwordInput.type = "password";
-        toggleIcon.classList.replace("fa-eye-slash", "fa-eye");
-    }
+    toggleIcon.addEventListener("click", function () {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.classList.replace("fa-eye", "fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.classList.replace("fa-eye-slash", "fa-eye");
+        }
 });
+
     </script>
 </body>
 </html>
