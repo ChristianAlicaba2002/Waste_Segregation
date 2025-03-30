@@ -28,3 +28,4 @@ Route::get('/adminlogin', function() {
 
 Route::post('/RegisterClient', [ClientController::class, 'RegisterClient'])->name('registerClient');
 Route::post('/LoginClient', [ClientController::class , 'LoginClient'])->name('loginClient');
+Route::post('/LogoutClient', [ClientController::class , 'LogoutClient'])->name('LogoutClient');

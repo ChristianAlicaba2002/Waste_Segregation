@@ -232,6 +232,15 @@
         @if (session('success'))
             <div class="alert alert-success" id="successAlert">
                 <i class="bi bi-check-circle alert-icon"></i>
+                <span><?php session('error')?></span>
+            </div>
+        @endif
+    </div>
+
+    <div class="alert-container">
+        @if (session('success'))
+            <div class="alert alert-success" id="successAlert">
+                <i class="bi bi-check-circle alert-icon"></i>
                 <span>{{ session('success') }}</span>
             </div>
         @endif
@@ -255,7 +264,7 @@
         <div class="login-container">
             <div class="eco-icon">♻️</div>
             <h1>Welcome Back!</h1>
-            <form action="{{route('loginClient')}}" method="POST">
+            <form action="/LoginClient" id="formAction" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -272,6 +281,27 @@
     </div>
 
     <script>
+        // document.getElementById('formAction').addEventListener('submit', (e)=> {
+        //     e.preventDefault()
+
+        //     // document.getElementById('formAction').action = '/LoginClient'
+        //     username = document.getElementById('username')
+        //     password = document.getElementById('password')
+
+        //     if(username.value !== '' || !password.value == '')
+        //     {    
+
+        //     }
+        //     else if(username.value == '' || password.value == '')
+        //     {
+        //         alert('input all fields')
+        //     }
+
+
+        // })
+
+
+
          setTimeout(() => {
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(alert => {
