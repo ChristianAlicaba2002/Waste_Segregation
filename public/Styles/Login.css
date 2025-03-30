@@ -1,0 +1,249 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    margin: 0;
+    background-color: white;
+    overflow-x: hidden;
+}
+
+.page-container {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(156, 233, 132, 0.55);
+    overflow: hidden;
+}
+
+.page-container img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 2px 4px 10px rgba(182, 236, 166, 0.72);
+    object-fit: contain;
+}
+
+.page-container h2, .page-container p {
+    color: #1b5e20;
+}
+
+.left-section {
+    flex: 1;
+    background-color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid rgb(66, 173, 73);
+    text-align: center;
+}
+
+.left-section img {
+    width: 80%;
+    max-width: 300px;
+    margin-bottom: 2rem;
+}
+
+.left-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.left-section p {
+    text-align: center;
+    line-height: 1.6;
+}
+
+.login-container {
+    flex: 1;
+    padding: 3rem;
+    text-align: center;
+}
+
+h1 {
+    color: #2e7d32;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+    position: relative;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2e7d32;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #a5d6a7;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+input[type="password"], input[type="text"] {
+    padding-right: 40px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2e7d32;
+}
+
+.toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #2e7d32;
+}
+
+.btn {
+    font-size: medium;
+    background-color: rgb(66, 173, 73);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: min(40%, 200px);
+}
+
+.btn:hover {
+    background-color: #2e7d32;
+}
+
+.register-link {
+    margin-top: 1.5rem;
+    display: block;
+    color: #2e7d32;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+.back-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    color: rgb(106, 218, 111);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    color: rgba(18, 87, 23, 0.88);
+}
+
+.alert-container, .alert-center {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 80%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.alert-center {
+    top: 10%;
+    transform: translate(-50%, 0);
+    max-width: 400px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    animation: slideIn 0.5s ease-out;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .page-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 450px;
+        padding: 1rem;
+    }
+
+    .left-section {
+        border-radius: 15px 15px 0 0;
+        padding: 1rem;
+        border-right: none;
+    }
+
+    .left-section img {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .login-container {
+        padding: 2rem 1rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .back-button {
+        font-size: 1rem;
+        left: 5px;
+        top: 5px;
+    }
+}
