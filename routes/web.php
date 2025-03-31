@@ -16,10 +16,6 @@ Route::get('/register', function() {
     return view('ClientSide.auth.Register');
 })->name('registerPage');
 
-Route::get('/adminlogin', function() {
-    return view('AdminSide.auth.Login');
-})->name('adminLogin');
-
 
 Route::post('/RegisterClient', [ClientController::class, 'RegisterClient'])->name('registerClient');
 Route::post('/LoginClient', [ClientController::class , 'LoginClient'])->name('loginClient');
