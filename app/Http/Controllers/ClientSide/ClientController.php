@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Application\ClientSide\RegisterClient;
+use App\Models\Client;
 
 class ClientController extends Controller
 {
@@ -81,23 +82,33 @@ class ClientController extends Controller
             'password' => 'required'
         ]);
 
+        $clients = DB::table('clients')->get();
+        
         if(empty($request->username) && empty($request->password))
         {
             return redirect('/login')->with('error', 'Please required all fields');
         }
-       
-        if(!Auth::guard('client')->attempt($request->only('username','password')))
+
+
+        if(!Auth::guard('client')->attempt($request->only('username','password')))   
         {
-            return redirect('/login')->with('error', 'Account does not exist');
+            return redirect('/login')->with('error', 'Account not found');
         }
-    
-        if(Auth::guard('client')->attempt($request->only('username','password')))
+
+        if(Auth::guard('client')->attempt($request->only('username','password')))   
         {
             $request->session()->regenerate();
             Auth::guard('client')->user();
             return redirect('/login')->with('success', 'Welcome Back !');
         }
+    }
 
+    public function LogoutClient(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerate();
+        return redirect('/login');
     }
 
 }
