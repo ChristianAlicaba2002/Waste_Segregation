@@ -81,7 +81,6 @@
 
     <section id="about-us" class="section">
         <h1>Mission and Objective</h1>
-        <a href="{{ route('adminLogin') }}" class="btn-signin">ADMIN</a>
     </section>
 
     <section id="product-showcase" class="section">
