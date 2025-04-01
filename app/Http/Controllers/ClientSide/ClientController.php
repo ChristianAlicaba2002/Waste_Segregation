@@ -99,7 +99,7 @@ class ClientController extends Controller
         {
             $request->session()->regenerate();
             Auth::guard('client')->user();
-            return redirect('/login')->with('success', 'Welcome Back !');
+            return redirect()->route('Main');
         }
     }
 

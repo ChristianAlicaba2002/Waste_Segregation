@@ -7,6 +7,10 @@
     <title>Client Page</title>
 </head>
 <body>
-
+    <h1>Client ni  siya</h1>
+    <form action="{{route('LogoutClient')}}" method="post">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
 </body>
 </html>
