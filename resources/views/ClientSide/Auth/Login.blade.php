@@ -14,33 +14,6 @@
         <i class="fas fa-circle-chevron-left"></i>
     </a>
 
-    <div class="alert-container">
-        @if (session('success'))
-            <div class="alert alert-success" id="successAlert">
-                <i class="bi bi-check-circle alert-icon"></i>
-                <span><?php session('error')?></span>
-            </div>
-        @endif
-    </div>
-
-    <div class="alert-container">
-        @if (session('success'))
-            <div class="alert alert-success" id="successAlert">
-                <i class="bi bi-check-circle alert-icon"></i>
-                <span>{{ session('success') }}</span>
-            </div>
-        @endif
-    </div>
-
-    <div class="alert-container">
-        @if (session('error'))
-            <div class="alert alert-danger" id="successAlert">
-                <i class="bi bi-check-circle alert-icon"></i>
-                <span>{{ session('error') }}</span>
-            </div>
-        @endif
-    </div>
-
     <div class="page-container">
         <div class="left-section">
             <img src="{{ asset('img/ecoshield.gif') }}">
@@ -55,6 +28,12 @@
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="username" id="username" name="username" required placeholder="Enter your username">
+                    @if (session('error'))
+                        <label class="ErrorMessage" for="">{{ session('error') }}</label>
+                        <script>
+                            document.getElementById('username').style.border = '1px solid red'
+                        </script>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -68,7 +47,7 @@
     </div>
 
     <script>
-    
+
          setTimeout(() => {
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(alert => {
