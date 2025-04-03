@@ -15,53 +15,113 @@ body {
     overflow-x: hidden;
 }
 
-.page-container {
-    display: flex;
-    width: 80%;
-    max-width: 1000px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(156, 233, 132, 0.55);
-    overflow: hidden;
-}
 
-.page-container img {
-    width: 100%;
-    max-width: 150px;
-    height: auto;
-    border-radius: 50%;
-    box-shadow: 2px 4px 10px rgba(182, 236, 166, 0.72);
-    object-fit: contain;
-}
-
-.page-container h2, .page-container p {
-    color: #1b5e20;
-}
-
-h1 {
-    color: #2e7d32;
-    margin-bottom: 1.5rem;
-}
-
-
-.back-button {
+.logout {
     position: absolute;
     top: 10px;
-    left: 50px;
-    color: rgb(106, 218, 111);
-    text-decoration: none;
+    left: 10px;
     display: flex;
     align-items: center;
-    top: 2rem;
-    gap: 5px;
-    font-size: 2.5rem;
+    gap: 8px;
+    padding: 10px 15px 10px 40px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
     font-weight: bold;
 }
 
-.back-button:hover {
-    color: rgba(18, 87, 23, 0.88);
+.logout-icon {
+    width: 100%;
+    height: 75%;
 }
 
+.user-profile {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.user-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.container {
+    margin: 80px auto;
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background: rgba(34, 233, 150, 0.829);
+    color: white;
+}
+
+td {
+    background-color: #fff;
+    color: #333;
+}
+
+.form-container {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.form-container input {
+    padding: 10px;
+    margin: 5px;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    background: rgb(34,233,151);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #45a068e0;
+}
+
+.TrashRec {
+    cursor: pointer;
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
 
 @media screen and (max-width: 600px) {
     .page-container {
