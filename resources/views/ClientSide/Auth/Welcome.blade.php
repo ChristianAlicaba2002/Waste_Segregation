@@ -36,7 +36,7 @@
         <h1>Segregation Trash Bin Statistics</h1>
 
         @php
-            $categories = DB::table('waste_category')->get();
+            $categories = DB::connection('mysql_waste_admin')->table('waste_category')->get();
             $paperCount = $categories->where('category_name', 'Paper')->count();
             $plasticCount = $categories->where('category_name', 'Plastic')->count();
             $metalCount = $categories->where('category_name', 'Metal')->count();
