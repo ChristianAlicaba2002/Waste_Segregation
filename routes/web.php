@@ -10,21 +10,20 @@ Route::get('/', function () {
 })->name('view');
 
 Route::get('/login', function () {
-    if(Auth::guard('client')->check())
-    {
-        return redirect()->route('Main');
+    if (Auth::guard('client')->check()) {
+        return redirect()->route('main');
     }
-    return view('ClientSide.auth.Login');
+    else{
+        return view('ClientSide.auth.Login');
+    }
 })->name('loginPage');
 
 Route::get('/register', function() {
     return view('ClientSide.auth.Register');
 })->name('registerPage');
 
-Route::middleware(['auth:client'])->group(function(){
-    Route::get('/main', function() {
-        return view('ClientSide.Pages.MainPage');
-    })->name('Main');
+Route::middleware(['auth:client'])->group(function () {
+   Route::get('/main',[ClientController::class, 'MainPage'])->name('main');
 });
 
 

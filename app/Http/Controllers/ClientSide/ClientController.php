@@ -19,6 +19,19 @@ class ClientController extends Controller
         $this->registerClient = $registerClient;
     }
    
+    public function MainPage(Request $request)
+    {
+        return view('ClientSide.Pages.MainPage');
+    }
+
+    public function updateInformation(Request $request, $client_id)
+    {
+        $categories = DB::connection('mysql_waste_admin')->table('waste_category')->get();
+
+    }
+
+
+
     public function RegisterClient(Request $request)
     {
         Validator::make($request->all(), [
@@ -95,11 +108,10 @@ class ClientController extends Controller
             return redirect('/login')->with('error', 'Account not found');
         }
 
-        if(Auth::guard('client')->attempt($request->only('username','password')))   
-        {
+        if (Auth::guard('client')->attempt($request->only('username', 'password'))) {
             $request->session()->regenerate();
-            Auth::guard('client')->user();
-            return redirect()->route('Main');
+            $user = Auth::guard('client')->user();
+            return redirect()->route('main');
         }
     }
 
@@ -108,7 +120,7 @@ class ClientController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerate();
-        return redirect('/login');
+        return redirect()->route('view');
     }
 
 }

@@ -61,11 +61,11 @@
         <div class="form-container" id="userForm">
             <h3>Edit User Info</h3>
             <form action="#" method="post">
-                <input type="text" name="homeId" placeholder="Home ID" required>
-                <input type="text" name="firstName" placeholder="First Name" required>
-                <input type="text" name="lastName" placeholder="Last Name" required>
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="text" name="address" placeholder="Address" required>
+                <input type="text" name="homeId" value="{{Auth::user()->client_id}}" placeholder="Home ID" required>
+                <input type="text" name="firstName" value="{{Auth::user()->first_name}}" placeholder="First Name" required>
+                <input type="text" name="lastName" value="{{Auth::user()->last_name}}" placeholder="Last Name" required>
+                <input type="text" name="username" value="{{Auth::user()->username}}" placeholder="Username" required>
+                <input type="text" name="address" value="{{Auth::user()->address}}" placeholder="Address" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
