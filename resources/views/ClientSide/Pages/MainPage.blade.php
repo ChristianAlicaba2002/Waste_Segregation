@@ -4,64 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Styles/MainPage.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
     <title>Client Page</title>
 </head>
 <body>
-    <form action="{{route('LogoutClient')}}" method="post">
-        @csrf
-        <button class="logout" type="submit">
-            <img src="img/logout.png" alt="Logout Icon" class="logout-icon">
-        </button>
-    </form>
-
-    <div class="user-profile" onclick="toggleForm()">
-        <img src="img/user.png" alt="User Profile">
+    <div class="sidebar">
+        <img src="img/logo.png" alt="Logo" class="logo" onclick="toggleSidebar()">
+        <div class="menu">
+            <button onclick="showHome()">
+                <div class="menu-item">
+                    <img src="img/home (1).png" alt="Home Icon" class="menu-icon">
+                    <span>Home</span>
+                </div>
+            </button>
+            <button onclick="showForm()">
+                <div class="menu-item">
+                    <img src="img/user.png" alt="User Icon" class="menu-icon">
+                    <span>Account</span>
+                </div>
+            </button>
+            <button onclick="showTable()">
+                <div class="menu-item">
+                    <img src="img/table.png" alt="Table Icon" class="menu-icon">
+                    <span>Table</span>
+                </div>
+            </button>
+            <div class="logout-form">
+                <form action="{{route('LogoutClient')}}" method="post">
+                    @csrf
+                    <button class="logout" type="submit">
+                        <div class="menu-item">
+                            <img src="img/logout.png" alt="Logout Icon" class="menu-icon">
+                            <span>Log Out</span>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-        <h1 class="TrashRec">Trash Record</h1>
-        <div class="table-container" id="trashInfo">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Trash ID</th>
-                        <th>Category</th>
-                        <th>Time Thrown</th>
-                        <th>Trash Bin Collected Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>Paper</td>
-                        <td>08:30 AM</td>
-                        <td>09:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Plastic</td>
-                        <td>10:15 AM</td>
-                        <td>11:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Metal</td>
-                        <td>02:00 PM</td>
-                        <td>02:45 PM</td>
-                    </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>Paper</td>
-                        <td>04:30 PM</td>
-                        <td>05:15 PM</td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="main-content">
+        <div id="homeContent">
+            <h1>Hi There {{Auth::user()->username}}!</h1>
+                <h1>ambot say ibutang diri</h1>
+                </div>
+            </div>
         </div>
-        <div class="form-container" id="userForm">
-            <h3>Edit User Info</h3>
+
+        <div class="form-container" id="userForm" style="display: none;">
+            <h3>Your Information</h3>
             <form action="#" method="post">
-                <input type="text" name="homeId" value="{{Auth::user()->client_id}}" placeholder="Home ID" required>
+                <input type="text" name="homeId" value="{{Auth::user()->client_id}}" placeholder="Home ID" readonly>
                 <input type="text" name="firstName" value="{{Auth::user()->first_name}}" placeholder="First Name" required>
                 <input type="text" name="lastName" value="{{Auth::user()->last_name}}" placeholder="Last Name" required>
                 <input type="text" name="username" value="{{Auth::user()->username}}" placeholder="Username" required>
@@ -69,14 +62,53 @@
                 <button type="submit">Submit</button>
             </form>
         </div>
+
+        <div class="container" id="trashInfo" style="display: none;">
+            <div class="table-container">
+                <h2>TrashBin Record</h2>
+                <table border="1" cellspacing="0" cellpadding="10">
+                    <thead>
+                        <tr>
+                            <th>Trash ID</th>
+                            <th>Category</th>
+                            <th>Time Thrown</th>
+                            <th>Trash Bin Collected Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>001</td><td>Paper</td><td>08:30 AM</td><td>09:00 AM</td></tr>
+                        <tr><td>002</td><td>Plastic</td><td>10:15 AM</td><td>11:00 AM</td></tr>
+                        <tr><td>003</td><td>Metal</td><td>02:00 PM</td><td>02:45 PM</td></tr>
+                        <tr><td>004</td><td>Paper</td><td>04:30 PM</td><td>05:15 PM</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script>
-        function toggleForm() {
-            var form = document.getElementById('userForm');
-            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+        function toggleSidebar() {
+            var sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('expanded');
+        }
+
+        function showHome() {
+            document.getElementById('homeContent').style.display = 'block';
+            document.getElementById('userForm').style.display = 'none';
+            document.getElementById('trashInfo').style.display = 'none';
+        }
+
+        function showForm() {
+            document.getElementById('homeContent').style.display = 'none';
+            document.getElementById('userForm').style.display = 'block';
+            document.getElementById('trashInfo').style.display = 'none';
+        }
+
+        function showTable() {
+            document.getElementById('homeContent').style.display = 'none';
+            document.getElementById('userForm').style.display = 'none';
+            document.getElementById('trashInfo').style.display = 'block';
         }
     </script>
-
 </body>
 </html>

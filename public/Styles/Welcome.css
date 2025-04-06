@@ -1,11 +1,18 @@
-*{
-    padding: 0;
+* {
+    box-sizing: border-box;
+
 }
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+
+html{
     scroll-behavior: smooth;
+
+}
+
+body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
     overflow-x: hidden;
 }
 
@@ -14,45 +21,38 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(56, 163, 83, 0.7);
+    background-color: none;
     padding: 0.8rem 1rem;
-    color: white;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    box-sizing: border-box;
-    width: 100vw;
-    min-width: 320px;
-    max-width: 100vw;
 }
 
 .navbar .menu {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex: 1;
     gap: 2rem;
-    margin-left: 20px;
+    margin-left: 5%;
 }
 
 .navbar .menu a {
     position: relative;
     text-decoration: none;
-    color: white;
-    font-weight: 500;
+    color: #388e3c;
+    font-weight: bold;
     padding: 0.5rem 1rem;
     text-align: center;
-    flex-wrap: wrap;
     max-width: 100%;
-    overflow: hidden;
+    font-family: 'Poppins';
+    font-size: 1rem;
+    transition: transform 0.2s ease, color 0.4s ease;
 }
 
 .navbar .menu a:hover {
-    background: none;
-    box-shadow: none;
-    transform: none;
+    color: #2e7d32;
+    transform: scale(1.1);
 }
 
 .navbar .menu a::after {
@@ -61,38 +61,34 @@ body {
     width: 0;
     height: 2px;
     bottom: 0;
-    left: 0;
-    background-color: white;
+    left: 50%;
+    background-color: rgb(24, 73, 26);
+    transition: width 0.3s ease, left 0.3s ease;
 }
 
 .navbar .menu a:hover::after {
     width: 100%;
+    left: 0;
 }
 
 .navbar .btn-signin {
     background-color: transparent;
-    border: 2px solid white;
+    border: 2px solid rgb(20, 85, 23);
     padding: 0.8rem 1.5rem;
     border-radius: 25px;
-    color: white;
+    color: #195812;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
     position: relative;
-    overflow: hidden;
-    z-index: 1;
 }
 
 .navbar .btn-signin::before {
     content: "";
     position: absolute;
     top: 0;
-    left: -100%;
     width: 100%;
     height: 100%;
-    background-color: rgb(255, 255, 255);
-    transition: left 0.5s ease-in-out;
-    z-index: -1;
     border-radius: 20px;
 }
 
@@ -102,56 +98,55 @@ body {
 
 .navbar .btn-signin:hover {
     color: rgb(53, 83, 62);
+    border-color: #66bb6a;
+    transform: scale(1.05);
 }
 
+.navbar .btn-signin:focus {
+    outline: none;
+    border-color: #388e3c;
+}
 
 .content {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 90vh;
-    text-align: center;
+    text-align: left;
     color: #2e7d32;
     padding: 2rem 1rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.content::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('../img/earth.jpg');
+    background-image: url('/img/main.jpg');
+    background-size: contain;
     background-position: center;
-    opacity: 0.1;
-    background-repeat: repeat;
-    z-index: -1;
+    background-repeat: no-repeat;
 }
 
 .slogan-container {
     max-width: 90%;
-    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
-.main-slogan {
-    font-size: 2.5rem;
+.main-slogan h1 {
+    font-size: 3rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    font-family: 'Anton';
     background: rgb(54, 83, 66);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.sub-slogan {
-    font-size: 1.5rem;
-    color: rgb(54, 83, 66);
-    margin-bottom: 2rem;
-    line-height: 1.6;
+main-slogan h5 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-family: 'Poppins';
+    background: rgb(54, 83, 66);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 h1 {
@@ -181,71 +176,138 @@ p {
 }
 
 .section h1 {
-    text-align: center;
     margin-top: 5rem;
 }
 
 .cards-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     margin-top: 30px;
 }
 
 .card {
     background: white;
     border-radius: 20px;
-    padding: 20px;
-    width: 100%;
-    max-width: 300px;
+    padding: 40px;
+    width: 30%;
     text-align: center;
     box-shadow: 0 10px 20px rgba(68, 219, 113, 0.65);
+    transition: transform 0.3s ease;
+}
+
+.card i {
+    font-size: 4rem;
+    color: #4caf50;
+    margin-bottom: 1rem;
+}
+
+.card .stat {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2e7d32;
 }
 
 .card:hover {
-    transform: none;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(68, 219, 113, 0.85);
 }
 
 .contact-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 4rem 2rem;
 }
 
 .contact-form {
-    text-align: center;
+    margin-top: -50px;
+    width: 100%;
+    max-width: 700px;
+    padding: 2.5rem;
+    border-radius: 20px;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.contact-form input {
-    width: 80%;
+.row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    flex: 1 1 100%;
+}
+
+input, textarea {
+    border: none;
+    border-bottom: 2px solid #66bb6a;
     padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    border: #4caf50 1px solid;
+    font-size: 1rem;
+    color: #2e7d32;
+    background: transparent;
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.3s ease;
 }
 
-.contact-form button {
-    background: #2e7d32;
+input::placeholder, textarea::placeholder {
+    color: #a5d6a7;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-bottom-color: #388e3c;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.center-button {
+    justify-content: center;
+}
+
+button {
+    background: linear-gradient(to right, #81c784, #66bb6a);
     color: white;
+    padding: 10px 20px;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.95rem;
     cursor: pointer;
+    box-shadow: 0 6px 12px rgba(102, 187, 106, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
+    background: linear-gradient(to right, #66bb6a, #43a047);
 }
 
 .logo-link {
-    display: flex;
-    align-items: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #195812;
     text-decoration: none;
 }
 
 .logo-link img {
-    margin-left: 3rem;
-    width: 50%;
-    height: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
 }
 
 .auth-buttons {
@@ -254,18 +316,76 @@ p {
     margin-right: 5rem;
 }
 
-@media (max-width: 600px) {
+#about-us {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 90vh;
+    padding: 2rem 1rem;
+    position: relative;
+    color: #2e7d32;
+}
+
+#background-video {
+    width: 300px;
+    height: 300px;
+    border: #195812 2px dashed;
+    margin-top: 5%;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 2rem;
+    background-color: #4caf50;
+}
+
+@media (max-width: 768px) {
     .navbar {
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .menu-toggle {
+    .navbar .menu {
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .navbar .menu a {
+        padding: 1rem;
+    }
+
+    .content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .main-slogan h1,
+    .main-slogan h5 {
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .cards-container {
+        flex-direction: column;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-form {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar .menu-toggle {
         display: block;
         font-size: 2rem;
         cursor: pointer;
         background: none;
         border: none;
-        color: white;
+        color: #fff;
         position: absolute;
         top: 15px;
         right: 20px;
@@ -288,7 +408,23 @@ p {
     }
 
     .navbar .menu a {
-        display: block;
-        padding: 0.5rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .navbar .btn-signin {
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
     }
 }
