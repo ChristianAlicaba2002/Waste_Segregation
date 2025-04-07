@@ -1,58 +1,76 @@
 * {
     box-sizing: border-box;
-
 }
 
-html{
-    scroll-behavior: smooth;
-
-}
-
-body {
-    font-family: 'Arial', 'Helvetica', sans-serif;
-    min-height: 100vh;
-    width: 100%;
+body, html {
     margin: 0;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .navbar {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    background-color: none;
     padding: 0.8rem 1rem;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
+    background-color: transparent;
+}
+
+.navbar .logo-link {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    font-weight: bolder;
+    color: #1a643a;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    letter-spacing: 5px;
+}
+
+.menu-toggle {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #20613c;
+}
+
+.menu-toggle img {
+    width: 30px;
+    height: auto;
 }
 
 .navbar .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0.5rem;
+    background-color: transparent;
+}
+
+.navbar .menu.active {
     display: flex;
-    flex: 1;
-    gap: 2rem;
-    margin-left: 5%;
 }
 
 .navbar .menu a {
     position: relative;
     text-decoration: none;
-    color: #388e3c;
+    color: #20613c;
     font-weight: bold;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    max-width: 100%;
-    font-family: 'Poppins';
+    padding: 1rem 2rem;
+    text-align: left;
     font-size: 1rem;
-    transition: transform 0.2s ease, color 0.4s ease;
+    transition: color 0.5s ease;
 }
 
 .navbar .menu a:hover {
-    color: #2e7d32;
-    transform: scale(1.1);
+    color: #143d26;
 }
 
 .navbar .menu a::after {
@@ -62,8 +80,8 @@ body {
     height: 2px;
     bottom: 0;
     left: 50%;
-    background-color: rgb(24, 73, 26);
-    transition: width 0.3s ease, left 0.3s ease;
+    background-color: #143d26;
+    transition: width 0.3s ease, left 0.4s ease;
 }
 
 .navbar .menu a:hover::after {
@@ -71,142 +89,143 @@ body {
     left: 0;
 }
 
+.navbar .auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.navbar .auth-buttons.mobile-hidden {
+    display: none;
+}
+
+.navbar .menu.active + .auth-buttons {
+    display: flex;
+}
+
 .navbar .btn-signin {
     background-color: transparent;
-    border: 2px solid rgb(20, 85, 23);
+    border: 2px solid #20613c;
     padding: 0.8rem 1.5rem;
     border-radius: 25px;
-    color: #195812;
+    color: #20613c;
     font-weight: bold;
-    cursor: pointer;
     text-decoration: none;
-    position: relative;
-}
-
-.navbar .btn-signin::before {
-    content: "";
-    position: absolute;
-    top: 0;
+    transition: color 0.5s ease, border-color 0.5s ease, transform 0.5s ease;
     width: 100%;
-    height: 100%;
-    border-radius: 20px;
-}
-
-.navbar .btn-signin:hover::before {
-    left: 0;
+    text-align: center;
 }
 
 .navbar .btn-signin:hover {
-    color: rgb(53, 83, 62);
-    border-color: #66bb6a;
+    color: #1a643a;
+    border-color: #8bf0b7;
     transform: scale(1.05);
-}
-
-.navbar .btn-signin:focus {
-    outline: none;
-    border-color: #388e3c;
 }
 
 .content {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 90vh;
-    text-align: left;
-    color: #2e7d32;
-    padding: 2rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
     background-image: url('/img/main.jpg');
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    min-height: 80vh;
+    padding-top: 20%;
+    padding-bottom: 25%;
 }
 
 .slogan-container {
-    max-width: 90%;
+    max-width: 95%;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+}
+
+.main-slogan h1,
+.main-slogan h5 {
+    margin: 0;
+    text-align: left;
+    padding-top: 5%;
+    padding-left: 5%;
 }
 
 .main-slogan h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     font-family: 'Anton';
-    background: rgb(54, 83, 66);
+    background: #20613c;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-main-slogan h5 {
-    font-size: 1.2rem;
-    font-weight: 300;
-    font-family: 'Poppins';
-    background: rgb(54, 83, 66);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, #2e7d32, #66bb6a);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-p {
+.main-slogan h5 {
     font-size: 1rem;
-    max-width: 700px;
-    margin: 1rem auto;
-    line-height: 1.6;
-    color: #4caf50;
+    font-weight: 300;
+    background: #20613c;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .section {
-    min-height: 100vh;
-    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.section h1 {
-    margin-top: 5rem;
+.section h1, p {
+    top: 0;
+    align-items: center;
+    text-align: center;
+    color: #20613c;
+    margin-bottom: 0;
+}
+
+#home,
+#about-us,
+#contact-us,
+#product-showcase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 15%;
+    padding-bottom: 20%;
 }
 
 .cards-container {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 30px;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
 }
 
 .card {
     background: white;
     border-radius: 20px;
-    padding: 40px;
-    width: 30%;
+    padding: 3rem;
+    width: 90%;
     text-align: center;
     box-shadow: 0 10px 20px rgba(68, 219, 113, 0.65);
     transition: transform 0.3s ease;
 }
 
 .card i {
-    font-size: 4rem;
-    color: #4caf50;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    background: linear-gradient(to right, #abeba9, #b3e5fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.8rem;
 }
 
 .card .stat {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: bold;
-    color: #2e7d32;
+    color: #20613c;
 }
 
 .card:hover {
@@ -216,27 +235,32 @@ p {
 
 .contact-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 4rem 2rem;
+    padding: 1rem;
+}
+
+.contact-container img {
+    width: 250px;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    margin-left: 0;
 }
 
 .contact-form {
-    margin-top: -50px;
-    width: 100%;
-    max-width: 700px;
-    padding: 2.5rem;
+    width: 95%;
+    padding: 1rem;
     border-radius: 20px;
-    background: none;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .row {
     display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .form-group {
@@ -246,185 +270,174 @@ p {
 }
 
 .full-width {
-    flex: 1 1 100%;
+    width: 100%;
 }
 
-input, textarea {
+input,
+textarea {
     border: none;
-    border-bottom: 2px solid #66bb6a;
-    padding: 10px;
-    font-size: 1rem;
-    color: #2e7d32;
+    border-bottom: 2px solid #20613c;
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    color: #20613c;
     background: transparent;
-    font-family: 'Segoe UI', sans-serif;
-    transition: all 0.3s ease;
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: #a5d6a7;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     outline: none;
-    border-bottom-color: #388e3c;
+    border-bottom-color: #143d26;
 }
 
 textarea {
-    min-height: 100px;
+    min-height: 60px;
     resize: vertical;
 }
 
 .center-button {
-    justify-content: center;
+    text-align: center;
 }
 
 button {
-    background: linear-gradient(to right, #81c784, #66bb6a);
+    background: #20613c;
     color: white;
-    padding: 10px 20px;
+    padding: 0.6rem 1.2rem;
     border: none;
     border-radius: 20px;
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(102, 187, 106, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-    transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
-    background: linear-gradient(to right, #66bb6a, #43a047);
+    background: #143d26;
 }
 
-.logo-link {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #195812;
-    text-decoration: none;
-}
-
-.logo-link img {
-    vertical-align: middle;
-    margin-right: 10px;
-}
-
-.auth-buttons {
+.mission-vision-values {
     display: flex;
-    gap: 1.5rem;
-    margin-right: 5rem;
-}
-
-#about-us {
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    height: 90vh;
-    padding: 2rem 1rem;
-    position: relative;
-    color: #2e7d32;
+    padding: 1.5rem 1rem;
+    color: #20613c;
+    margin: 1rem;
 }
 
-#background-video {
-    width: 300px;
-    height: 300px;
-    border: #195812 2px dashed;
-    margin-top: 5%;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 2rem;
-    background-color: #4caf50;
+.mission-section,
+.vision-section,
+.values-section {
+    width: 95%;
+    margin: 0.8rem 0;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(162, 228, 145);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (max-width: 768px) {
+.mission-section:hover,
+.vision-section:hover,
+.values-section:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 2px 4px rgb(80, 146, 64);
+}
+
+.mission-vision-values img {
+    max-width: 50px;
+    margin-bottom: 0.8rem;
+    opacity: 0.9;
+}
+
+.mission-vision-values h1 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    border-bottom: 1px solid #20613c;
+    padding-bottom: 0.3rem;
+}
+
+.mission-vision-values p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: justify;
+    flex-grow: 1;
+}
+
+@media (min-width: 769px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
     }
 
-    .navbar .menu {
-        flex-direction: column;
-        margin-left: 0;
-    }
-
-    .navbar .menu a {
-        padding: 1rem;
-    }
-
-    .content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .main-slogan h1,
-    .main-slogan h5 {
-        text-align: center;
-        margin-left: 0;
-    }
-
-    .cards-container {
-        flex-direction: column;
-    }
-
-    .contact-container {
-        flex-direction: column;
-    }
-
-    .contact-form {
-        width: 100%;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 600px) {
-    .navbar .menu-toggle {
-        display: block;
-        font-size: 2rem;
-        cursor: pointer;
-        background: none;
-        border: none;
-        color: #fff;
-        position: absolute;
-        top: 15px;
-        right: 20px;
-    }
-
-    .navbar .menu {
+    .menu-toggle {
         display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: rgba(56, 163, 83, 0.9);
-        padding: 1rem;
-        text-align: center;
     }
 
-    .navbar .menu.show {
+    .navbar .menu {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        margin-top: 0;
+    }
+
+    .navbar .auth-buttons {
+        flex-direction: row;
+        gap: 2rem;
+        width: auto;
+        margin-top: 0;
+    }
+    .navbar .auth-buttons.mobile-hidden {
         display: flex;
     }
 
-    .navbar .menu a {
-        padding: 1rem;
+    .content {
+        flex-direction: row;
     }
-}
 
-@media (max-width: 768px) {
     .cards-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        justify-content: space-around;
     }
 
     .card {
-        width: 80%;
-        margin-bottom: 20px;
+        width: 30%;
+        padding: 40px;
     }
 
-    .navbar .btn-signin {
-        padding: 0.8rem 1.2rem;
-        font-size: 1rem;
+    .contact-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .contact-container img,
+    .contact-form {
+        width: 50%;
+    }
+
+    .row {
+        flex-direction: row;
+    }
+
+    .mission-vision-values {
+        flex-direction: row;
+    }
+
+    .mission-section,
+    .vision-section,
+    .values-section {
+        width: auto;
+        margin: 0.5rem;
+    }
+
+    .navbar .btn-signin{
+        width: auto;
+        text-align: initial;
     }
 }

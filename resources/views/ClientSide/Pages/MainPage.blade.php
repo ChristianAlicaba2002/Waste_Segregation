@@ -5,56 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Styles/MainPage.css">
     <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <title>Client Page</title>
 </head>
 <body>
+
     <div class="sidebar">
-        <img src="img/logo.png" alt="Logo" class="logo" onclick="toggleSidebar()">
-        <div class="menu">
-            <button onclick="showHome()">
-                <div class="menu-item">
-                    <img src="img/home (1).png" alt="Home Icon" class="menu-icon">
-                    <span>Home</span>
-                </div>
-            </button>
-            <button onclick="showForm()">
-                <div class="menu-item">
-                    <img src="img/user.png" alt="User Icon" class="menu-icon">
-                    <span>Account</span>
-                </div>
-            </button>
-            <button onclick="showTable()">
-                <div class="menu-item">
-                    <img src="img/table.png" alt="Table Icon" class="menu-icon">
-                    <span>Table</span>
-                </div>
-            </button>
-            <div class="logout-form">
-                <form action="{{route('LogoutClient')}}" method="post">
-                    @csrf
-                    <button class="logout" type="submit">
-                        <div class="menu-item">
-                            <img src="img/logout.png" alt="Logout Icon" class="menu-icon">
-                            <span>Log Out</span>
-                        </div>
-                    </button>
-                </form>
-            </div>
+        <button class="menu-item" onclick="showSection('homeContent')">
+            <img src="img/home (1).png" alt="Home Icon" class="menu-icon">
+            <span>Home</span>
+        </button>
+        <button class="menu-item" onclick="showSection('userForm')">
+            <img src="img/user.png" alt="User Icon" class="menu-icon">
+            <span>Account</span>
+        </button>
+        <button class="menu-item" onclick="showSection('trashInfo')">
+            <img src="img/table.png" alt="Table Icon" class="menu-icon">
+            <span>Table</span>
+        </button>
+        <div class="logout-form">
+            <form action="{{route('LogoutClient')}}" method="post">
+                @csrf
+                <button class="Logout" type="submit">
+                    <img src="img/logout.png" alt="Logout Icon" class="menu-icon">
+                    <span>Log Out</span>
+                </button>
+            </form>
         </div>
     </div>
 
-    <div class="main-content">
-        <div id="homeContent">
-            <h1>Hi There {{Auth::user()->username}}!</h1>
-                <h1>ambot say ibutang diri</h1>
-                </div>
-            </div>
+    <div id="homeContent" class="content-section">
+        <h1>Hi There {{Auth::user()->username}}!</h1>
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo" class="logo">
+            <p>TrashBinnie</p>
         </div>
+    </div>
 
-        <div class="form-container" id="userForm" style="display: none;">
+    <div id="userForm" class="content-section" style="display: none;">
+        <div class="form-container">
             <h3>Your Information</h3>
             <form action="#" method="post">
-                <input type="text" name="homeId" value="{{Auth::user()->client_id}}" placeholder="Home ID" readonly>
+                <input type="text" name="homeId" value="{{Auth::user()->client_id}}" placeholder="Home ID" readonly style="cursor: not-allowed;">
                 <input type="text" name="firstName" value="{{Auth::user()->first_name}}" placeholder="First Name" required>
                 <input type="text" name="lastName" value="{{Auth::user()->last_name}}" placeholder="Last Name" required>
                 <input type="text" name="username" value="{{Auth::user()->username}}" placeholder="Username" required>
@@ -62,8 +54,10 @@
                 <button type="submit">Submit</button>
             </form>
         </div>
+    </div>
 
-        <div class="container" id="trashInfo" style="display: none;">
+    <div id="trashInfo" class="content-section" style="display: none;">
+        <div class="container">
             <div class="table-container">
                 <h2>TrashBin Record</h2>
                 <table border="1" cellspacing="0" cellpadding="10">
@@ -87,27 +81,11 @@
     </div>
 
     <script>
-        function toggleSidebar() {
-            var sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('expanded');
-        }
-
-        function showHome() {
-            document.getElementById('homeContent').style.display = 'block';
-            document.getElementById('userForm').style.display = 'none';
-            document.getElementById('trashInfo').style.display = 'none';
-        }
-
-        function showForm() {
-            document.getElementById('homeContent').style.display = 'none';
-            document.getElementById('userForm').style.display = 'block';
-            document.getElementById('trashInfo').style.display = 'none';
-        }
-
-        function showTable() {
-            document.getElementById('homeContent').style.display = 'none';
-            document.getElementById('userForm').style.display = 'none';
-            document.getElementById('trashInfo').style.display = 'block';
+        function showSection(sectionId) {
+            const sections = ['homeContent', 'userForm', 'trashInfo'];
+            sections.forEach(id => {
+                document.getElementById(id).style.display = id === sectionId ? 'block' : 'none';
+            });
         }
     </script>
 </body>

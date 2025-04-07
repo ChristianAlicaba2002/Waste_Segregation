@@ -51,7 +51,7 @@ body {
 }
 
 .register-container h1 {
-    color: #2e7d32;
+    color: #20613c;
 }
 
 .form-group {
@@ -67,13 +67,15 @@ body {
 label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #2e7d32;
+    color:#143d26;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 input {
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid #a5d6a7;
+    border: 1px solid #20613c;
     border-radius: 5px;
     box-sizing: border-box;
     transition: border-color 0.3s;
@@ -83,7 +85,7 @@ input[type="password"], input[type="text"] {
     width: 100%;
     padding: 0.8rem;
     padding-right: 40px;
-    border: 1px solid #a5d6a7;
+    border: 1px solid #20613c;
     border-radius: 5px;
     transition: border-color 0.3s;
     box-sizing: border-box;
@@ -91,7 +93,7 @@ input[type="password"], input[type="text"] {
 
 input:focus {
     outline: none;
-    border-color: #2e7d32;
+    border-color: #143d26;
 }
 
 .toggle-icon {
@@ -101,14 +103,14 @@ input:focus {
     transform: translateY(-50%);
     cursor: pointer;
     font-size: 1.2rem;
-    color: #2e7d32;
+    color: #20613c;
     display: none;
     transition: top 0.3s ease;
 }
 
 .btn {
     font-size: medium;
-    background-color: rgb(66, 173, 73);
+    background-color: #20613c;
     color: white;
     padding: 0.8rem 1.5rem;
     border: none;
@@ -119,13 +121,13 @@ input:focus {
 }
 
 .btn:hover {
-    background-color: #2e7d32;
+    background-color: #143d26;
 }
 
 .login-link {
     margin-top: 1.5rem;
     display: block;
-    color: #2e7d32;
+    color: #20613c;
     text-decoration: none;
 }
 
@@ -148,7 +150,7 @@ input:focus {
     position: absolute;
     top: 10px;
     left: 50px;
-    color: rgb(106, 218, 111);
+    color: #20613c;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -159,7 +161,7 @@ input:focus {
 }
 
 .back-button:hover {
-    color: rgba(18, 87, 23, 0.88);
+    color: #143d26;
 }
 
 @media (max-width: 600px) {
