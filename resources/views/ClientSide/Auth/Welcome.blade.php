@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/IM_logo.png">
     <link rel="stylesheet" href="Styles/Welcome.css">
-    <title>Segregation Trash Bin</title>
+    <title>TrashBinnie</title>
 </head>
 <body>
 
     <nav class="navbar">
         <a href="#" class="logo-link">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo">
+            <img src="{{ asset('img/IM_logo.png') }}" alt="Logo">
             TrashBinnie
         </a>
         <input type="checkbox" id="menu-toggle" style="display: none;">

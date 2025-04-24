@@ -3,90 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard</title>
+    <link rel="icon" type="image/png" href="img/IM_logo.png">
     <link rel="stylesheet" href="Styles/MainPage.css">
-    <link rel="icon" type="image/png" href="img/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <title>Client Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-
-    <div class="sidebar">
-        <button class="menu-item" onclick="showSection('homeContent')">
-            <img src="img/home (1).png" alt="Home Icon" class="menu-icon">
-            <span>Home</span>
-        </button>
-        <button class="menu-item" onclick="showSection('userForm')">
-            <img src="img/user.png" alt="User Icon" class="menu-icon">
-            <span>Account</span>
-        </button>
-        <button class="menu-item" onclick="showSection('trashInfo')">
-            <img src="img/table.png" alt="Table Icon" class="menu-icon">
-            <span>Table</span>
-        </button>
+    <aside class="sidebar">
+        <div class="user-info">
+                <img src="/img/IM_logo.png" alt="IM Logo">
+                <p class="name">TrashBinnie</p>
+            </div>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li class="active" onclick="showSection('homeContent')">
+                    <img src="img/home.png" class="menu-icon" alt="Home Icon">
+                    <span>Home</span>
+                </li>
+                <li onclick="showSection('userContent')">
+                    <img src="img/user.png" class="menu-icon" alt="User Icon">
+                    <span>User Information</span>
+                </li>
+                <li onclick="showSection('tableContent')">
+                    <img src="img/table.png" class="menu-icon" alt="Table Icon">
+                    <span>Table Record</span>
+                </li>
+            </ul>
+        </nav>
         <div class="logout-form">
-            <form action="{{route('LogoutClient')}}" method="post">
+            <form action="{{ route('LogoutClient') }}" method="POST">
                 @csrf
-                <button class="Logout" type="submit">
-                    <img src="img/logout.png" alt="Logout Icon" class="menu-icon">
-                    <span>Log Out</span>
+                <button type="submit" class="Logout">
+                    <img src="img/logout.png" class="menu-icon" alt="Logout Icon">
+                    <span>Logout</span>
                 </button>
             </form>
         </div>
-    </div>
+    </aside>
 
-    <div id="homeContent" class="content-section">
-        <h1>Hi There {{Auth::user()->username}}!</h1>
-        <div class="logo-container">
-            <img src="img/logo.png" alt="Logo" class="logo">
-            <p>TrashBinnie</p>
-        </div>
-    </div>
-
-    <div id="userForm" class="content-section" style="display: none;">
-        <div class="form-container">
-            <h3>Your Information</h3>
-            <form action="#" method="post">
-                <input type="text" name="homeId" value="{{Auth::user()->client_id}}" placeholder="Home ID" readonly style="cursor: not-allowed;">
-                <input type="text" name="firstName" value="{{Auth::user()->first_name}}" placeholder="First Name" required>
-                <input type="text" name="lastName" value="{{Auth::user()->last_name}}" placeholder="Last Name" required>
-                <input type="text" name="username" value="{{Auth::user()->username}}" placeholder="Username" required>
-                <input type="text" name="address" value="{{Auth::user()->address}}" placeholder="Address" required>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="trashInfo" class="content-section" style="display: none;">
-        <div class="container">
-            <div class="table-container">
-                <h2>TrashBin Record</h2>
-                <table border="1" cellspacing="0" cellpadding="10">
-                    <thead>
-                        <tr>
-                            <th>Trash ID</th>
-                            <th>Category</th>
-                            <th>Time Thrown</th>
-                            <th>Trash Bin Collected Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>001</td><td>Paper</td><td>08:30 AM</td><td>09:00 AM</td></tr>
-                        <tr><td>002</td><td>Plastic</td><td>10:15 AM</td><td>11:00 AM</td></tr>
-                        <tr><td>003</td><td>Metal</td><td>02:00 PM</td><td>02:45 PM</td></tr>
-                        <tr><td>004</td><td>Paper</td><td>04:30 PM</td><td>05:15 PM</td></tr>
-                    </tbody>
-                </table>
+    <div class="dashboard-container">
+    <main class="content">
+        <section id="homeContent" class="section active">
+        <h1>Welcome {{ Auth::user()->username }} !</h1>
+            <div class="cards">
+            <div class="data-card">
+                <h3>Paper</h3>
+                <p>Total Trash Collected: 301830</p>
+                <p>Garbage Weight Last Collected: 5kilo</p>
+                <p style="color: gray">9:00PM 02-09-35</p>
             </div>
-        </div>
-    </div>
+            <div class="data-card">
+                <h3>Plastic</h3>
+                <p>Total Trash Collected: 3213</p>
+                <p>Garbage Weight Last Collected: 1000kilo </p>
+                <p style="color: gray">9:00PM 02-09-35</p>
+            </div>
+            <div class="data-card">
+                <h3>Metal</h3>
+                <p>Total Trash Collected: 3132123</p>
+                <p>Garbage Weight Last Collected:1000kilo </p>
+                <p style="color: gray">9:00PM 02-09-35</p>
+            </div>
+            </div>
+        </section>
+
+        <section id="userContent" class="section">
+            <div class="info-card">
+            <h1> {{ Auth::user()->username }}'s Information</h1>
+                <form action="#" method="post">
+
+                <div class="infovalue">
+                        <h3>TrashBinnie ID: </h3>
+                        <input type="text" name="trashbinID" value="" placeholder="Trash Bin ID" readonly>
+                    </div>
+                    <div class="infovalue">
+                        <h3>ID: </h3>
+                        <input type="text" name="homeId" value="{{ Auth::user()->client_id}}" placeholder="Home ID" readonly>
+                    </div>
+                    <div class="infovalue">
+                        <h3>Username: </h3>
+                        <input type="text" name="username" value="{{ Auth::user()->username}}" placeholder="Username" readonly>
+                    </div>
+                    <div class="infovalue">
+                        <h3>First Name: </h3>
+                        <input type="text" name="firstName" value="{{ Auth::user()->first_name }}" placeholder="First Name" required>
+                    </div>
+                    <div class="infovalue">
+                        <h3>Last Name: </h3>
+                        <input type="text" name="lastName" value="{{ Auth::user()->last_name }}" placeholder="Last Name" required>
+                    </div>
+                    <div class="infovalue">
+                        <h3>Address: </h3>
+                        <input type="text" name="address" value="{{ Auth::user()->address}}" placeholder="Address" >
+                    </div>
+                    <div class="infovalue">
+                        <button>Update Info</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="tableContent" class="section">
+            <h2>TrashBin Record</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Trash ID</th>
+                        <th>Category</th>
+                        <th>Time Thrown</th>
+                        <th>Trash Bin Collected Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>001</td><td>Paper</td><td>08:30 AM</td><td>09:00 AM</td></tr>
+                    <tr><td>002</td><td>Plastic</td><td>10:15 AM</td><td>11:00 AM</td></tr>
+                    <tr><td>003</td><td>Metal</td><td>02:00 PM</td><td>02:45 PM</td></tr>
+                    <tr><td>004</td><td>Paper</td><td>04:30 PM</td><td>05:15 PM</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
 
     <script>
         function showSection(sectionId) {
-            const sections = ['homeContent', 'userForm', 'trashInfo'];
-            sections.forEach(id => {
-                document.getElementById(id).style.display = id === sectionId ? 'block' : 'none';
+            const allSections = document.querySelectorAll('.section');
+            allSections.forEach(section => {
+                section.style.display = 'none';
             });
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+
+            const menuItems = document.querySelectorAll('nav ul li');
+            menuItems.forEach(item => item.classList.remove('active'));
+
+            const clickedItem = Array.from(menuItems).find(item =>
+                item.getAttribute('onclick').includes(`showSection('${sectionId}')`)
+            );
+            if (clickedItem) {
+                clickedItem.classList.add('active');
+            }
         }
+
+        window.onload = function () {
+            showSection('homeContent');
+        };
     </script>
+
 </body>
 </html>
