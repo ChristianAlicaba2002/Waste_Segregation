@@ -46,7 +46,7 @@
     <div class="dashboard-container">
     <main class="content">
         <section id="homeContent" class="section active">
-        <h1>Welcome {{ Auth::user()->username }} !</h1>
+        <h1>Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}!</h1>
             <div class="cards">
             <div class="data-card">
                 <h3>Paper</h3>
@@ -71,7 +71,7 @@
 
         <section id="userContent" class="section">
             <div class="info-card">
-            <h1> {{ Auth::user()->username }}'s Information</h1>
+            <h1> {{ Auth::user()->first_name }}'s Information</h1>
                 <form action="#" method="post">
 
                 <div class="infovalue">

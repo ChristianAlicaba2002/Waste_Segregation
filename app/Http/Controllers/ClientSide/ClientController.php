@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Application\ClientSide\RegisterClient;
 use App\Models\Client;
+use App\Models\testdb;
 
 class ClientController extends Controller
 {
@@ -67,7 +68,7 @@ class ClientController extends Controller
             Hash::make($request->password)
         );
 
-        return redirect('/login')->with('success', 'Account created successfully');
+        return redirect()->route('loginPage')->with('success', 'Account created successfully');
 
     }
 
@@ -121,6 +122,38 @@ class ClientController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerate();
         return redirect()->route('view');
+    }
+
+
+
+    public function registerItems(Request $request)
+    {
+       $validator = Validator::make($request->all(), [
+        'Metal' => 'required|numeric',
+        'Paper' => 'required|numeric',
+        'Plastic' => 'required|numeric'
+       ]);
+
+        if($validator->fails())
+        {
+            return Response()->json([
+                'status' => false,
+                'message' => $validator->errors()
+            ],404);
+        }
+
+        $item = testdb::create([
+            'Metal' => $request->Metal,
+            'Paper' => $request->Paper,
+            'Plastic'=> $request->Plastic,
+        ]);
+
+        return Response()->json([
+            'status' => true,
+            'message' => 'Created Sucessfully',
+            'data' => $item
+        ],201);
+
     }
 
 }

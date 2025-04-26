@@ -64,7 +64,7 @@
 
         passwordInput.addEventListener("input", function () {
         toggleIcon.style.display = this.value.length > 0 ? "block" : "none";
-});
+        });
 
     toggleIcon.addEventListener("click", function () {
         if (passwordInput.type === "password") {

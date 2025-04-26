@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
 </head>
 
 <body>
-<a href="{{ route('view') }}" class="back-button">
+    <a href="{{ route('view') }}" class="back-button">
         <i class="fas fa-circle-chevron-left"></i>
     </a>
 
@@ -37,35 +38,35 @@
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required placeholder="Enter your username" required>
                     @if (session('usernameExists'))
-                        <label class="ErrorMessage" for="">{{ session('usernameExists') }}</label>
-                        <script>
-                            document.getElementById('username').style.border = '1px solid red'
-                        </script>
+                    <label class="ErrorMessage" for="">{{ session('usernameExists') }}</label>
+                    <script>
+                        document.getElementById('username').style.border = '1px solid red'
+                    </script>
                     @endif
                 </div>
                 <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required placeholder="Enter your password" autocomplete="off">
-    <i class="fa fa-eye toggle-icon" id="togglePassword"></i>
-    @if(session('passlengthrequired'))
-        <label class="ErrorMessage" for="">{{ session('passlengthrequired') }}</label>
-        <script>
-            document.getElementById('password').style.border = '1px solid red';
-        </script>
-    @endif
-</div>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password" autocomplete="off">
+                    <i class="fa fa-eye toggle-icon" id="togglePassword"></i>
+                    @if(session('passlengthrequired'))
+                    <label class="ErrorMessage" for="">{{ session('passlengthrequired') }}</label>
+                    <script>
+                        document.getElementById('password').style.border = '1px solid red';
+                    </script>
+                    @endif
+                </div>
 
-<div class="form-group">
-    <label for="confirm_password">Confirm Password</label>
-    <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password">
-    <i class="fa fa-eye toggle-icon" id="toggleConfirmPassword"></i>
-    @if(session('passwordMismatch'))
-        <label class="ErrorMessage" for="">{{ session('passwordMismatch') }}</label>
-        <script>
-            document.getElementById('confirm_password').style.border = '1px solid red';
-        </script>
-    @endif
-</div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password">
+                    <i class="fa fa-eye toggle-icon" id="toggleConfirmPassword"></i>
+                    @if(session('passwordMismatch'))
+                    <label class="ErrorMessage" for="">{{ session('passwordMismatch') }}</label>
+                    <script>
+                        document.getElementById('confirm_password').style.border = '1px solid red';
+                    </script>
+                    @endif
+                </div>
 
                 <button type="submit" class="btn">Register</button>
             </form>
@@ -73,29 +74,30 @@
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        function setupPasswordToggle(inputId, toggleId) {
-        const passwordInput = document.getElementById(inputId);
-        const toggleIcon = document.getElementById(toggleId);
+        document.addEventListener("DOMContentLoaded", function() {
+            function setupPasswordToggle(inputId, toggleId) {
+                const passwordInput = document.getElementById(inputId);
+                const toggleIcon = document.getElementById(toggleId);
 
-        passwordInput.addEventListener("input", function () {
-            toggleIcon.style.display = this.value.length > 0 ? "block" : "none";
-    });
+                passwordInput.addEventListener("input", function() {
+                    toggleIcon.style.display = this.value.length > 0 ? "block" : "none";
+                });
 
-        toggleIcon.addEventListener("click", function () {
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                toggleIcon.classList.replace("fa-eye", "fa-eye-slash");
-            } else {
-                passwordInput.type = "password";
-                toggleIcon.classList.replace("fa-eye-slash", "fa-eye");
+                toggleIcon.addEventListener("click", function() {
+                    if (passwordInput.type === "password") {
+                        passwordInput.type = "text";
+                        toggleIcon.classList.replace("fa-eye", "fa-eye-slash");
+                    } else {
+                        passwordInput.type = "password";
+                        toggleIcon.classList.replace("fa-eye-slash", "fa-eye");
+                    }
+                });
             }
-    });
-}
 
-    setupPasswordToggle("password", "togglePassword");
-    setupPasswordToggle("confirm_password", "toggleConfirmPassword");
-});
+            setupPasswordToggle("password", "togglePassword");
+            setupPasswordToggle("confirm_password", "toggleConfirmPassword");
+        });
     </script>
 </body>
+
 </html>

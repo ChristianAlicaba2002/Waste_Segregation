@@ -427,7 +427,7 @@ body {
     padding: 25px;
     border-radius: 10px;
     margin: 20px auto;
-    max-width: 95%;
+    max-width: 100%;
     overflow: auto;
 }
 
