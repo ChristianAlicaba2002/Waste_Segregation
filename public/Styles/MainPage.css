@@ -12,7 +12,7 @@ body {
     display: flex;
     width: 100%;
     margin: 1rem;
-    overflow: hidden;
+    overflow: auto;
     height: auto;
 
 }
@@ -28,7 +28,7 @@ body {
 }
 
 .sidebar:hover {
-    width: 220px;
+    width: 280px;
 }
 
 .user-info {
@@ -58,7 +58,7 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.2s ease-in-out, margin-left 0.2s ease-in-out;
@@ -160,6 +160,7 @@ body {
 }
 
 .logout-form button.Logout {
+    margin-top: 1rem;
     background: none;
     border: none;
     color: #2e7d32;
@@ -220,75 +221,75 @@ body {
 
 #homeContent {
     padding: 2rem;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-radius: 10px;
 }
 
 #homeContent h1 {
-    color: #48bb78;
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-    letter-spacing: -0.02em;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.04);
+    color: #2e7d32;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
+#homeContent h5 {
+    color: #4d4949;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
 
+#homeContent span {
+    color: gray;
+    font-weight: 700;
+}
+
+#homeContent .status {
+    color: green;
+
+}
 .cards {
     display: flex;
     gap: 1.5rem;
-    margin-top: 1.5rem;
-    width: 100%;
-    justify-content: space-around;
+    margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 .data-card {
     background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background-color 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     text-align: center;
-    width: fit-content;
-}
-
-.data-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(105, 196, 117, 0.1);
-    border: #96ffc3 1px solid;
+    flex: 1 0 250px;
 }
 
 .data-card h3 {
-    color: #38a169;
+    color: #2e7d32;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: bolder;
-    letter-spacing: -0.02em;
+    font-weight: 500;
 }
 
 .data-card p {
-    margin-bottom: 0.8rem;
-    font-weight: 400;
-    font-size: 1.1rem;
-    color: #488f5c;
+    color: #555;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
 }
 
 .data-card p:last-child {
-    color: #a6dfbf;
-    font-size: 0.9rem;
-    font-style: italic;
-    margin-top: auto;
+    margin-bottom: 0;
+    font-weight: bold;
+    color: #333;
 }
 
+@media (max-width: 768px) {
+    .cards {
+        flex-direction: column;
+    }
+
+    .data-card {
+        flex-basis: auto;
+    }
+}
 #userContent {
     display: flex;
     justify-content: center;
@@ -347,7 +348,7 @@ body {
 }
 
 .info-card .infovalue input[type="text"] {
-    width: calc(100% - 16px);
+    width: fit-content;
     padding: 0.8rem;
     border: none;
     border-radius: 10px;
@@ -375,11 +376,12 @@ body {
     border: #48bb78 1px solid;
     border-radius: 30px;
     font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
     transition:
         background-color 0.3s ease,
         box-shadow 0.3s ease,
-        transform 0.8s ease;
+        transform 0.6s ease;
     width: fit-content;
     margin-top: 2rem;
     box-shadow: 0 6px 18px rgba(72, 187, 120, 0.2);
@@ -387,9 +389,10 @@ body {
 }
 
 .info-card button:hover {
-    background:linear-gradient(to right, #71eba488, #38a169af);
+    background: white;
     border: #8afdba 1px solid;
-    color: white;
+    color: #6fb973;
+    font-weight: bold;
     box-shadow: 0 8px 24px rgba(100, 238, 158, 0.3);
     transform: translateY(-4px) scale(1.04);
 }
@@ -423,13 +426,13 @@ body {
 .info-card form .infovalue:nth-child(1) {
     grid-column: 1 / -1;
 }
-#tableContent {
+/* #tableContent {
     padding: 25px;
     border-radius: 10px;
     margin: 20px auto;
     max-width: 95%;
     overflow: auto;
-}
+} */
 
 #tableContent h2 {
     color: #48bb78;
