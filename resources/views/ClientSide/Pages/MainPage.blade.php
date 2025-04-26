@@ -46,57 +46,62 @@
     <div class="dashboard-container">
     <main class="content">
         <section id="homeContent" class="section active">
-        <h1>Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}!</h1>
+            <h1>Welcome {{ Auth::user()->username }}!</h1>
+            <h5>UserID:
+            <span>1202</span>
+            </h5>
+            <h5>Address:
+            <span>1202</span>
+            </h5>
+            <h5>Status:
+                <span class="status">Active</span>
+            </h5>
             <div class="cards">
-            <div class="data-card">
-                <h3>Paper</h3>
-                <p>Total Trash Collected: 301830</p>
-                <p>Garbage Weight Last Collected: 5kilo</p>
-                <p style="color: gray">9:00PM 02-09-35</p>
-            </div>
-            <div class="data-card">
-                <h3>Plastic</h3>
-                <p>Total Trash Collected: 3213</p>
-                <p>Garbage Weight Last Collected: 1000kilo </p>
-                <p style="color: gray">9:00PM 02-09-35</p>
-            </div>
-            <div class="data-card">
-                <h3>Metal</h3>
-                <p>Total Trash Collected: 3132123</p>
-                <p>Garbage Weight Last Collected:1000kilo </p>
-                <p style="color: gray">9:00PM 02-09-35</p>
-            </div>
+                <div class="data-card">
+                    <h3>Paper</h3>
+                    <p>Total Trash Collected:</p>
+                    <p>301830</p>
+                </div>
+                <div class="data-card">
+                    <h3>Plastic</h3>
+                    <p>Total Trash Collected:</p>
+                    <p>09808</p>
+                </div>
+                <div class="data-card">
+                    <h3>Metal</h3>
+                    <p>Total Trash Collected:</p>
+                    <p>0809</p>
+                </div>
             </div>
         </section>
 
         <section id="userContent" class="section">
             <div class="info-card">
-            <h1> {{ Auth::user()->first_name }}'s Information</h1>
+            <h1> {{ Auth::user()->username }}'s Information</h1>
                 <form action="#" method="post">
-
-                <div class="infovalue">
-                        <h3>TrashBinnie ID: </h3>
+                    <div class="infovalue">
+                        <h3>TrashBinnie ID:</h3>
                         <input type="text" name="trashbinID" value="" placeholder="Trash Bin ID" readonly>
                     </div>
                     <div class="infovalue">
-                        <h3>ID: </h3>
+                        <h3>ID:</h3>
                         <input type="text" name="homeId" value="{{ Auth::user()->client_id}}" placeholder="Home ID" readonly>
                     </div>
                     <div class="infovalue">
-                        <h3>Username: </h3>
+                        <h3>Username:</h3>
                         <input type="text" name="username" value="{{ Auth::user()->username}}" placeholder="Username" readonly>
                     </div>
                     <div class="infovalue">
-                        <h3>First Name: </h3>
+                        <h3>First Name:</h3>
                         <input type="text" name="firstName" value="{{ Auth::user()->first_name }}" placeholder="First Name" required>
                     </div>
                     <div class="infovalue">
-                        <h3>Last Name: </h3>
+                        <h3>Last Name:</h3>
                         <input type="text" name="lastName" value="{{ Auth::user()->last_name }}" placeholder="Last Name" required>
                     </div>
                     <div class="infovalue">
-                        <h3>Address: </h3>
-                        <input type="text" name="address" value="{{ Auth::user()->address}}" placeholder="Address" >
+                        <h3>Address:</h3>
+                        <input type="text" name="address" value="{{ Auth::user()->address}}" placeholder="Address">
                     </div>
                     <div class="infovalue">
                         <button>Update Info</button>
@@ -113,14 +118,13 @@
                         <th>Trash ID</th>
                         <th>Category</th>
                         <th>Time Thrown</th>
-                        <th>Trash Bin Collected Time</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>001</td><td>Paper</td><td>08:30 AM</td><td>09:00 AM</td></tr>
-                    <tr><td>002</td><td>Plastic</td><td>10:15 AM</td><td>11:00 AM</td></tr>
-                    <tr><td>003</td><td>Metal</td><td>02:00 PM</td><td>02:45 PM</td></tr>
-                    <tr><td>004</td><td>Paper</td><td>04:30 PM</td><td>05:15 PM</td></tr>
+                    <tr><td>001</td><td>Paper</td><td>08:30 AM</td></tr>
+                    <tr><td>002</td><td>Plastic</td><td>10:15 AM</td></tr>
+                    <tr><td>003</td><td>Metal</td><td>02:00 PM</td></tr>
+                    <tr><td>004</td><td>Paper</td><td>04:30 PM</td></tr>
                 </tbody>
             </table>
         </section>

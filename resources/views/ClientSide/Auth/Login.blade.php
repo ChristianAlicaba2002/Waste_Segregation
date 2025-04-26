@@ -26,8 +26,12 @@
             <form action="/LoginClient" id="formAction" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="username" id="username" name="username" required placeholder="Enter your username">
+                    <label for="binnie_id"></label>
+                    <input type="text" id="binnie_id" name="binnie_id" placeholder="Binnie ID" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="username"></label>
+                    <input type="username" id="username" name="username" required placeholder="Username">
                     @if (session('error'))
                         <label class="ErrorMessage" for="">{{ session('error') }}</label>
                         <script>
@@ -36,8 +40,8 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="Enter your password" autocomplete="off">
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" required placeholder="Password" autocomplete="off">
                     <i class="fa fa-eye toggle-icon" id="togglePassword"></i>
                 </div>
                 <button type="submit" class="btn">Login</button>
