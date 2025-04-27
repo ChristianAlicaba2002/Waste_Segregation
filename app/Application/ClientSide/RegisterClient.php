@@ -16,9 +16,9 @@ class RegisterClient
          $this->clientRepository = $clientRepository;
     }
 
-    public function CreateClient(string $client_id , string $first_name , string $last_name , string $username , string $password)
+    public function CreateClient(int $client_id , int $binnie_id , string $first_name , string $last_name , string $username , string $password , string $address)
     {
-        $Register = new Client($client_id , $first_name , $last_name , $username , $password);
+        $Register = new Client($client_id , $binnie_id, $first_name , $last_name , $username , $password , $address);
 
         $this->clientRepository->CreateClient($Register);
     }

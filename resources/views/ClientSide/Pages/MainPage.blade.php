@@ -48,7 +48,10 @@
         <section id="homeContent" class="section active">
             <h1>Welcome {{ Auth::user()->username }}!</h1>
             <h5>UserID:
-            <span>1202</span>
+            <span>{{ Auth::user()->client_id }}</span>
+            </h5>
+            <h5>Binnie ID:
+            <span>{{ Auth::user()->binnie_id }}</span>
             </h5>
             <h5>Address:
             <span>1202</span>
@@ -81,10 +84,10 @@
                 <form action="#" method="post">
                     <div class="infovalue">
                         <h3>TrashBinnie ID:</h3>
-                        <input type="text" name="trashbinID" value="" placeholder="Trash Bin ID" readonly>
+                        <input type="text" name="trashbinID" value="{{ Auth::user()->binnie_id}}" placeholder="Trash Bin ID" readonly>
                     </div>
                     <div class="infovalue">
-                        <h3>ID:</h3>
+                        <h3>User ID:</h3>
                         <input type="text" name="homeId" value="{{ Auth::user()->client_id}}" placeholder="Home ID" readonly>
                     </div>
                     <div class="infovalue">

@@ -28,7 +28,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="binnie_id"></label>
-                    <input type="text" id="binnie_id" name="binnie_id" required placeholder="Binnie ID" required>
+                    <input type="text" id="binnie_id" name="binnie_id" maxlength="6" required placeholder="Binnie ID" required>
                 </div>
                 <div class="form-group">
                     <label for="username"></label>
@@ -49,28 +49,28 @@
                     <input type="text" id="last_name" name="last_name" required placeholder="Last Name" required>
                 </div>
                 <div class="form-group">
-    <label for="password"></label>
-    <input type="password" id="password" name="password" required placeholder="Password" autocomplete="off">
-    <i class="fa fa-eye toggle-icon" id="togglePassword"></i>
-    @if(session('passlengthrequired'))
-        <label class="ErrorMessage" for="">{{ session('passlengthrequired') }}</label>
-        <script>
-            document.getElementById('password').style.border = '1px solid red';
-        </script>
-    @endif
-</div>
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" required placeholder="Password" autocomplete="off">
+                    <i class="fa fa-eye toggle-icon" id="togglePassword"></i>
+                    @if(session('passlengthrequired'))
+                    <label class="ErrorMessage" for="">{{ session('passlengthrequired') }}</label>
+                    <script>
+                        document.getElementById('password').style.border = '1px solid red';
+                    </script>
+                    @endif
+                </div>
 
-<div class="form-group">
-    <label for="confirm_password"></label>
-    <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm Password">
-    <i class="fa fa-eye toggle-icon" id="toggleConfirmPassword"></i>
-    @if(session('passwordMismatch'))
-        <label class="ErrorMessage" for="">{{ session('passwordMismatch') }}</label>
-        <script>
-            document.getElementById('confirm_password').style.border = '1px solid red';
-        </script>
-    @endif
-</div>
+                <div class="form-group">
+                    <label for="confirm_password"></label>
+                    <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm Password">
+                    <i class="fa fa-eye toggle-icon" id="toggleConfirmPassword"></i>
+                    @if(session('passwordMismatch'))
+                    <label class="ErrorMessage" for="">{{ session('passwordMismatch') }}</label>
+                    <script>
+                        document.getElementById('confirm_password').style.border = '1px solid red';
+                    </script>
+                    @endif
+                </div>
 
                 <button type="submit" class="btn">Register</button>
             </form>

@@ -27,7 +27,13 @@
                 @csrf
                 <div class="form-group">
                     <label for="binnie_id"></label>
-                    <input type="text" id="binnie_id" name="binnie_id" placeholder="Binnie ID" autocomplete="off">
+                    <input type="text" id="binnie_id" name="binnie_id" maxlength="6" placeholder="Binnie ID" autocomplete="off">
+                    @if (session('notFoundBinnieID'))
+                        <label class="ErrorMessage" for="">{{ session('notFoundBinnieID') }}</label>
+                        <script>
+                            document.getElementById('username').style.border = '1px solid red'
+                        </script>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="username"></label>

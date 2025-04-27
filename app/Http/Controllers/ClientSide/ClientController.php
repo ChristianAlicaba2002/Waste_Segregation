@@ -36,6 +36,7 @@ class ClientController extends Controller
     public function RegisterClient(Request $request)
     {
         Validator::make($request->all(), [
+            'binnie_id' => 'required|numeric',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
@@ -59,9 +60,11 @@ class ClientController extends Controller
         }
 
         $client_id = $this->getGenerateUserID();
+        // $binnie_id = $this->getGenerateBinnieID();
 
         $this->registerClient->CreateClient(
             $client_id,
+            $request->binnie_id,
             $request->first_name,
             $request->last_name,
             $request->username, 
@@ -75,16 +78,26 @@ class ClientController extends Controller
     private function getGenerateUserID(): string
     {
         do {
-            $userId = $this->generateRandomUserID(6);
+            $userId = $this->generateRandomUserID();
             $exists = DB::table('clients')->where('client_id', $userId)->exists();
         } while ($exists);
 
         return $userId;
     }
 
-    private function generateRandomUserID(int $length = 10): string
+    private function getGenerateBinnieID(): int
     {
-        $result = substr(bin2hex(random_bytes(ceil($length / 2))), 0, $length);
+        do {
+            $binnie_id = $this->generateRandomUserID();
+            $exists = DB::table('clients')->where('client_id', $binnie_id)->exists();
+        } while ($exists);
+
+        return $binnie_id;
+    }
+
+    private function generateRandomUserID()
+    {
+        $result = random_int(111111,999999);
 
         return $result;
     }
@@ -92,6 +105,7 @@ class ClientController extends Controller
     public function LoginClient(Request $request)
     {
         $credentials = Validator::make($request->all(), [
+            'binnie_id' => 'required',
             'username' => 'required',
             'password' => 'required'
         ]);
@@ -103,13 +117,22 @@ class ClientController extends Controller
             return redirect('/login')->with('error', 'Please required all fields');
         }
 
+        $Getbinnie_id = DB::table('clients')->where('binnie_id' , $request->binnie_id)->first();
 
-        if(!Auth::guard('client')->attempt($request->only('username','password')))   
-        {
-            return redirect('/login')->with('error', 'Account not found');
-        }
+       if(!$Getbinnie_id)
+       {
+            return redirect('/login')->with('notFoundBinnieID', 'Binnie ID not found');
+       }
 
-        if (Auth::guard('client')->attempt($request->only('username', 'password'))) {
+       $client = DB::table('clients')->where('username', $request->username)->first();
+
+       if(!$client || !Hash::check($request->password, $client->password))
+       {
+        return redirect('/login')->with('error', 'Account not found');
+       }
+
+
+        if (Auth::guard('client')->attempt($request->only('binnie_id','username', 'password'))) {
             $request->session()->regenerate();
             $user = Auth::guard('client')->user();
             return redirect()->route('main');
