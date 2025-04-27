@@ -18,30 +18,24 @@
         </a>
         <input type="checkbox" id="menu-toggle" style="display: none;">
         <label for="menu-toggle" class="menu-toggle">
-            <img src="img/lines.png" alt="Menu"></label>
+            <img src="img/lines.png" alt="Menu">
+        </label>
 
         <div class="menu">
-            <a href="#home" class="{{ request()->is('#home') ? 'active' : '' }}">Home</a>
-            <a href="#about-us" class="{{ request()->is('#about-us') ? 'active' : '' }}">About Us</a>
-            <a href="#product-showcase" class="{{ request()->is('#product-showcase') ? 'active' : '' }}">Product Showcase</a>
-            <a href="#contact-us" class="{{ request()->is('#contact-us') ? 'active' : '' }}">Contact Us</a>
-        </div>
-        <div class="auth-buttons">
-            <a href="{{ route('loginPage') }}" class="btn-signin">Sign In</a>
-            <a href="{{ route('registerPage') }}" class="btn-signin">Sign Up</a>
+            <a href="#home">Home</a>
+            <a href="#about-us">About Us</a>
+            <a href="#product-showcase">Product Showcase</a>
+            <a href="#contact-us">Contact Us</a>
         </div>
     </nav>
 
-    <div class="content">
-        <div class="main-slogan">
-            <h1>Turning waste into wonder---</h1>
-            <h5>automatically sorting metal, plastic, and paper for a cleaner, greener tomorrow!</h5>
-        </div>
-    </div>
+    <section class="welcome-section">
+    <h1 class="welcome-title">Welcome to TrashBinnie</h1>
+    <h2 class="welcome-subtitle">Improving household through the process of proper segregation.</h2>
+    <a href="{{ route('registerPage') }}" class="btn-signin">Sign Up</a>
+    </section>
 
-    <section id="home" class="section">
-        <h1>Segregation Trash Bin Statistics</h1>
-
+    <section class="home-section" id="home">
         @php
             $categories = DB::connection('mysql_waste_admin')->table('waste_disposal_record')->get();
             $paperCount = $categories->where('category_name', 'Paper')->count();
@@ -50,64 +44,64 @@
         @endphp
 
         <div class="cards-container">
+            <div class="left-section">
+                <h1>TrashBinnie Statistics</h1>
+            </div>
             @if($categories->count() > 0)
                 <div class="card">
                     <i class="fas fa-newspaper"></i>
-                    <h3>Paper Items</h3>
                     <div class="stat">{{ number_format($paperCount) }}</div>
+                    <h3>Paper Items</h3>
                 </div>
                 <div class="card">
                     <i class="fas fa-wine-bottle"></i>
-                    <h3>Plastic Items</h3>
                     <div class="stat">{{ number_format($plasticCount) }}</div>
+                    <h3>Plastic Items</h3>
                 </div>
                 <div class="card">
                     <i class="fas fa-cog"></i>
-                    <h3>Metal Items</h3>
                     <div class="stat">{{ number_format($metalCount) }}</div>
+                    <h3>Metal Items</h3>
                 </div>
             @else
                 <div class="card">
                     <i class="fas fa-newspaper"></i>
-                    <h3>Paper Items</h3>
                     <div class="stat">0</div>
+                    <h3>Paper Items</h3>
                 </div>
                 <div class="card">
                     <i class="fas fa-wine-bottle"></i>
-                    <h3>Plastic Items</h3>
                     <div class="stat">0</div>
+                    <h3>Plastic Items</h3>
                 </div>
                 <div class="card">
                     <i class="fas fa-cog"></i>
-                    <h3>Metal Items</h3>
                     <div class="stat">0</div>
+                    <h3>Metal Items</h3>
                 </div>
             @endif
         </div>
     </section>
 
-    <section id="about-us" class="section">
-        <div class="mission-vision-values">
-            <div class="mission-section">
-                <img src="img/mission.png" alt="Mission">
-                <h1>Mission</h1>
-                <p>To deploy intelligent, automated waste segregation systems that minimize landfill waste and promote a sustainable environment.</p>
-            </div>
-            <div class="vision-section">
-                <img src="img/vision.png" alt="Vision">
-                <h1>Vision</h1>
-                <p>To establish a future where automated, efficient waste segregation is seamlessly integrated into urban environments globally.</p>
-            </div>
-            <div class="values-section">
-                <img src="img/values.png" alt="Values">
-                <h1>Values</h1>
-                <p>To uphold environmental responsibility, innovation, and community well-being in the development and implementation of our automated trash segregation systems.</p>
-            </div>
+    <section class="about-us-section" id="about-us">
+        <div class="mvv-card">
+            <img src="img/mission.png" alt="Mission">
+            <h1>Mission</h1>
+            <p>To improve our ecosystem and help out our environment through proper segregation and festering a cleaner and efficient usage of garbage,
+                we can ensure a healthier and greener tomorrow.
+            </p>
+        </div>
+        <div class="mvv-card">
+            <img src="img/vision.png" alt="Vision">
+            <h1>Vision</h1>
+            <p>To build a world where waste can be extracted, utilized, and sustained; a world where recycling is no longer a nightmare hindered by inseparable clumps of garbage;
+                a greener field nurtured by those who came before; and factories where every single mineral serves a meaningful purpose.</p>
         </div>
     </section>
 
-    <section id="product-showcase" class="section">
-        <img src="img/recyc.gif" alt="" style="width: auto; height:10%">
+
+    <section class="product-section" id="product-showcase">
+
     </section>
 
 
@@ -120,13 +114,10 @@
         <script>alert("{{session('error')}}")</script>
     @endif
 
-    <section id="contact-us" class="section">
-        <h1>Need Support?</h1>
-        <p>Contact us if u need assistance.</p>
+    <section  class="contact-section" id="contact-us">
         <div class="contact-container">
             <img src="img/vase.jpg" alt="">
-            <form action="{{route('sendfeedback')}}" class="contact-form" method="post">
-                @csrf
+            <form class="contact-form">
                 <div class="row">
                     <div class="form-group">
                         <input type="text" name="first_name" placeholder="First Name" required>
@@ -147,6 +138,7 @@
                 </div>
                 <div class="row center-button">
                     <button type="submit">Submit</button>
+                </div>
                 </div>
             </form>
         </div>
