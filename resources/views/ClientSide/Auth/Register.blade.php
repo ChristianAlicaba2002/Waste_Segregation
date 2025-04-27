@@ -11,15 +11,14 @@
 </head>
 
 <body>
-<a href="{{ route('view') }}" class="back-button" aria-label="Go back">
+    <a href="{{ route('view') }}" class="back-button" aria-label="Go back">
         <i class="fas fa-circle-chevron-left"></i>
     </a>
 
     <div class="page-container">
         <div class="left-section">
-        <img src="{{ asset('img/trash.gif') }}">
+            <img src="{{ asset('img/trash.gif') }}">
             <h1>Segregation Mission!</h1>
-            <p>lmsak</p>
         </div>
         <div class="register-container">
             <h1>Create an Account</h1>
@@ -29,6 +28,7 @@
                     <label for="binnie_id"></label>
                     <input type="text" id="binnie_id" name="binnie_id" maxlength="6" required placeholder="Binnie ID" required>
                 </div>
+
                 <div class="form-group">
                     <label for="first_name"></label>
                     <input type="text" id="first_name" name="first_name" required placeholder="First Name" required>
@@ -48,24 +48,16 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="first_name"></label>
-                    <input type="text" id="first_name" name="first_name" required placeholder="First Name" required>
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" required placeholder="Password" autocomplete="off">
+                    <i class="fa fa-eye toggle-icon" id="togglePassword"></i>
+                    @if(session('passlengthrequired'))
+                    <label class="ErrorMessage" for="">{{ session('passlengthrequired') }}</label>
+                    <script>
+                        document.getElementById('password').style.border = '1px solid red';
+                    </script>
+                    @endif
                 </div>
-                <div class="form-group">
-                    <label for="last_name"></label>
-                    <input type="text" id="last_name" name="last_name" required placeholder="Last Name" required>
-                </div>
-                <div class="form-group">
-    <label for="password"></label>
-    <input type="password" id="password" name="password" required placeholder="Password" autocomplete="off">
-    <i class="fa fa-eye toggle-icon" id="togglePassword"></i>
-    @if(session('passlengthrequired'))
-        <label class="ErrorMessage" for="">{{ session('passlengthrequired') }}</label>
-        <script>
-            document.getElementById('password').style.border = '1px solid red';
-        </script>
-    @endif
-</div>
 
                 <div class="form-group">
                     <label for="confirm_password"></label>

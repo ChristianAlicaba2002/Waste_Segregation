@@ -14,17 +14,19 @@ class Client extends Authenticatable
 
     protected $table = 'clients';
     protected $guard = 'client';
-    
+
     protected $primaryKey = 'client_id';
     public $incrementing = false;
-    
+
     protected $fillable = [
         'client_id',
         'binnie_id',
         'first_name',
         'last_name',
+        'city',
+        'barangay',
+        'purok',
         'username',
         'password',
-        'address',
     ];
 }

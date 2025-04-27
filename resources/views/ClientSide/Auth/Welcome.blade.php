@@ -43,7 +43,7 @@
         <h1>Segregation Trash Bin Statistics</h1>
 
         @php
-            $categories = DB::connection('mysql_waste_admin')->table('waste_category')->get();
+            $categories = DB::connection('mysql_waste_admin')->table('waste_disposal_record')->get();
             $paperCount = $categories->where('category_name', 'Paper')->count();
             $plasticCount = $categories->where('category_name', 'Plastic')->count();
             $metalCount = $categories->where('category_name', 'Metal')->count();
@@ -110,28 +110,39 @@
         <img src="img/recyc.gif" alt="" style="width: auto; height:10%">
     </section>
 
+
+    @if(session('success'))
+        <script>alert("{{session('success')}}")</script>
+    @endif
+
+
+    @if(session('error'))
+        <script>alert("{{session('error')}}")</script>
+    @endif
+
     <section id="contact-us" class="section">
         <h1>Need Support?</h1>
         <p>Contact us if u need assistance.</p>
         <div class="contact-container">
             <img src="img/vase.jpg" alt="">
-            <form class="contact-form">
+            <form action="{{route('sendfeedback')}}" class="contact-form" method="post">
+                @csrf
                 <div class="row">
                     <div class="form-group">
-                        <input type="text" placeholder="First Name" required>
+                        <input type="text" name="first_name" placeholder="First Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Last Name" required>
+                        <input type="text" name="last_name" placeholder="Last Name" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group full-width">
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="email" name="username" placeholder="Your Email" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group full-width">
-                        <textarea placeholder="Your Message" required></textarea>
+                        <textarea name="message" placeholder="Your Message" required></textarea>
                     </div>
                 </div>
                 <div class="row center-button">

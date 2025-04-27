@@ -19,7 +19,7 @@ class ClientController extends Controller
     {
         $this->registerClient = $registerClient;
     }
-   
+
     public function MainPage(Request $request)
     {
         return view('ClientSide.Pages.MainPage');
@@ -28,10 +28,7 @@ class ClientController extends Controller
     public function updateInformation(Request $request, $client_id)
     {
         $categories = DB::connection('mysql_waste_admin')->table('waste_category')->get();
-
     }
-
-
 
     public function RegisterClient(Request $request)
     {
@@ -44,18 +41,15 @@ class ClientController extends Controller
             'confirm_password' => 'required|string|max:255',
         ]);
 
-        if($request->confirm_password != $request->password)
-        {
+        if ($request->confirm_password != $request->password) {
             return redirect('/register')->with('passwordMismatch', 'Password does not match');
         }
 
-        if(DB::table('clients')->where('username', $request->username)->exists())
-        {
+        if (DB::table('clients')->where('username', $request->username)->exists()) {
             return redirect('/register')->with('usernameExists', 'Username already exists');
         }
 
-        if(strlen($request->password) < 8)
-        {
+        if (strlen($request->password) < 8) {
             return redirect('/register')->with('passlengthrequired', 'Password must be at least 8 characters');
         }
 
@@ -67,11 +61,50 @@ class ClientController extends Controller
             $request->binnie_id,
             $request->first_name,
             $request->last_name,
-            $request->username, 
+            'Your City',
+            'Your Barangay',
+            'Your Purok',
+            $request->username,
             Hash::make($request->password)
         );
 
         return redirect()->route('loginPage')->with('success', 'Account created successfully');
+    }
+
+    public function UpdateUserInformation(Request $request)
+    {
+        $user = DB::table('clients')->where('client_id', Auth::guard('client')->user()->client_id)->first();
+        if (!$user) {
+            return redirect()->route('main')->with('error', 'Account not found');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'firstName' => 'required|string',
+            'lastName'  => 'required|string',
+            'city'  => 'required|string',
+            'barangay'  => 'required|string',
+            'purok'  => 'required|string',
+        ]);
+
+        if($validator->fails())
+        {
+            return redirect()->route('main')->with('error', $validator->errors());
+        }
+
+
+        $this->registerClient->UpdateClient(
+            $user->client_id,
+            $user->binnie_id,
+            $request->firstName,
+            $request->lastName,
+            $request->city,
+            $request->barangay,
+            $request->purok,
+            $user->username,
+            $user->password
+        );
+
+        return redirect()->route('main')->with('success', 'Updated Succesully');
 
     }
 
@@ -97,7 +130,7 @@ class ClientController extends Controller
 
     private function generateRandomUserID()
     {
-        $result = random_int(111111,999999);
+        $result = random_int(111111, 999999);
 
         return $result;
     }
@@ -111,28 +144,25 @@ class ClientController extends Controller
         ]);
 
         $clients = DB::table('clients')->get();
-        
-        if(empty($request->username) && empty($request->password))
-        {
+
+        if (empty($request->username) && empty($request->password)) {
             return redirect('/login')->with('error', 'Please required all fields');
         }
 
-        $Getbinnie_id = DB::table('clients')->where('binnie_id' , $request->binnie_id)->first();
+        $Getbinnie_id = DB::table('clients')->where('binnie_id', $request->binnie_id)->first();
 
-       if(!$Getbinnie_id)
-       {
+        if (!$Getbinnie_id) {
             return redirect('/login')->with('notFoundBinnieID', 'Binnie ID not found');
-       }
+        }
 
-       $client = DB::table('clients')->where('username', $request->username)->first();
+        $client = DB::table('clients')->where('username', $request->username)->first();
 
-       if(!$client || !Hash::check($request->password, $client->password))
-       {
-        return redirect('/login')->with('error', 'Account not found');
-       }
+        if (!$client || !Hash::check($request->password, $client->password)) {
+            return redirect('/login')->with('error', 'Account not found');
+        }
 
 
-        if (Auth::guard('client')->attempt($request->only('binnie_id','username', 'password'))) {
+        if (Auth::guard('client')->attempt($request->only('binnie_id', 'username', 'password'))) {
             $request->session()->regenerate();
             $user = Auth::guard('client')->user();
             return redirect()->route('main');
@@ -147,37 +177,34 @@ class ClientController extends Controller
         return redirect()->route('view');
     }
 
-
-
     public function registerItems(Request $request)
     {
-       $validator = Validator::make($request->all(), [
-        'Metal' => 'required|numeric',
-        'Paper' => 'required|numeric',
-        'Plastic' => 'required|numeric'
-       ]);
+        $validator = Validator::make($request->all(), [
+            'Metal' => 'required|numeric',
+            'Paper' => 'required|numeric',
+            'Plastic' => 'required|numeric',
+            'weight' => 'requried|numeric' 
+        ]);
 
-        if($validator->fails())
-        {
+        if ($validator->fails()) {
             return Response()->json([
                 'status' => false,
                 'message' => $validator->errors()
-            ],404);
+            ], 404);
         }
 
-        $item = testdb::create([
-            'Metal' => $request->Metal,
-            'Paper' => $request->Paper,
-            'Plastic'=> $request->Plastic,
-        ]);
+        // $item = testdb::create([
+        //     'Metal' => $request->Metal,
+        //     'Paper' => $request->Paper,
+        //     'Plastic' => $request->Plastic,
+        // ]);
 
-        return Response()->json([
-            'status' => true,
-            'message' => 'Created Sucessfully',
-            'data' => $item
-        ],201);
-
+        // return Response()->json([
+        //     'status' => true,
+        //     'message' => 'Created Sucessfully',
+        //     'data' => $item
+        // ], 201);
     }
 
+
 }
-    
