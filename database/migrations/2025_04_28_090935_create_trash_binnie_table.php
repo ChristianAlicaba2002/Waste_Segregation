@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('location', function (Blueprint $table) {
-            $table->integer('location_id')->primary();
-            $table->string('binnie_id')->references('binnie_id')->on('clients')->onDelete('cascade');
-            $table->string('location_name')->references('city')->on('clients')->onDelete('cascade');
+        Schema::create('trash_binnie', function (Blueprint $table) {
+            $table->integer('trash_binnie_id')->primary();
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('location');
+        Schema::dropIfExists('trash_binnie');
     }
 };

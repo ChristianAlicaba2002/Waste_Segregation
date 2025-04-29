@@ -22,7 +22,13 @@ class ClientController extends Controller
 
     public function MainPage(Request $request)
     {
-        return view('ClientSide.Pages.MainPage');
+        $categories = DB::connection('mysql_waste_admin')->table('waste_item')->where('binnie_id' , Auth::user()->binnie_id)->get();
+        $metal = $categories->where('category_id', 1)->count();
+        $paper = $categories->where('category_id', 2)->count();
+        $plastic = $categories->where('category_id', 3)->count();
+
+
+        return view('ClientSide.Pages.MainPage' , compact('categories', 'metal','paper','plastic'));
     }
 
     public function updateInformation(Request $request, $client_id)

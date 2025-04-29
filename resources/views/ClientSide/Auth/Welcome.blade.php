@@ -117,7 +117,9 @@
     <section  class="contact-section" id="contact-us">
         <div class="contact-container">
             <img src="img/vase.jpg" alt="">
-            <form class="contact-form">
+            <form action="{{route('sendfeedback')}}" class="contact-form" method="post">
+                @csrf
+                @method("POST")
                 <div class="row">
                     <div class="form-group">
                         <input type="text" name="first_name" placeholder="First Name" required>
