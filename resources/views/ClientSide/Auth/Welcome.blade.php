@@ -11,6 +11,13 @@
 </head>
 <body>
 
+    @if(session('success'))
+        <script>alert("{{session('success')}}")</script>
+    @endif
+    @if(session('error'))
+        <script>alert("{{session('error')}}")</script>
+    @endif
+
     <nav class="navbar">
         <a href="#" class="logo-link">
             <img src="{{ asset('img/IM_logo.png') }}" alt="Logo">
@@ -37,16 +44,13 @@
 
     <section class="home-section" id="home">
         @php
-            $categories = DB::connection('mysql_waste_admin')->table('waste_disposal_record')->get();
+            $categories = DB::connection('mysql_waste_admin')->table('waste_category')->get();
             $paperCount = $categories->where('category_name', 'Paper')->count();
             $plasticCount = $categories->where('category_name', 'Plastic')->count();
             $metalCount = $categories->where('category_name', 'Metal')->count();
         @endphp
 
         <div class="cards-container">
-            <div class="left-section">
-                <h1>TrashBinnie Statistics</h1>
-            </div>
             @if($categories->count() > 0)
                 <div class="card">
                     <i class="fas fa-newspaper"></i>
@@ -101,25 +105,25 @@
 
 
     <section class="product-section" id="product-showcase">
-
+        <div class="product-showcase">
+            <div class="product-card">
+                <img src="/img/product2.jpg" alt="">
+            </div>
+                        <div class="product-card">
+                <img src="/img/product1.jpg" alt="">
+            </div>
+            <div class="product-card">
+                <img src="/img/product3.jpg" alt="">
+            </div>
+        </div>
     </section>
-
-
-    @if(session('success'))
-        <script>alert("{{session('success')}}")</script>
-    @endif
-
-
-    @if(session('error'))
-        <script>alert("{{session('error')}}")</script>
-    @endif
 
     <section  class="contact-section" id="contact-us">
         <div class="contact-container">
-            <img src="img/vase.jpg" alt="">
-            <form action="{{route('sendfeedback')}}" class="contact-form" method="post">
-                @csrf
-                @method("POST")
+                <form action="{{route('sendfeedback')}}" class="contact-form" method="post">
+                    @csrf
+                <h1>Need Support?</h1>
+                    <p>Contact us if u need assistance.</p>
                 <div class="row">
                     <div class="form-group">
                         <input type="text" name="first_name" placeholder="First Name" required>
