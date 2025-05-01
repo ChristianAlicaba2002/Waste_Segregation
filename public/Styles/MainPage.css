@@ -1,9 +1,114 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     display: flex;
     background-color: white;
     height: 100vh;
+}
+
+.table-legend-container {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.table-legend {
+    display: flex;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+#supportContent {
+    border: #8afdba 1px solid;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.support-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.support-container h1 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+.support-container h2 {
+    color: #48bb78;
+    margin-bottom: 20px;
+}
+
+.support-container p {
+    color: #38a169;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.support-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.support-form .form-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.support-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #38a169;
+    text-align: left;
+    font-weight: bold;
+}
+
+.support-form input[type="email"],
+.support-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #2e7d32;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #2e7d32;
+    box-sizing: border-box;
+}
+
+.support-form textarea {
+    resize: vertical;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.support-form .submit-button {
+    color: #2e7d32;
+    background-color: white;
+    padding: 12px 24px;
+    border:1px solid  #2e7d32 ;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.8s ease-in-out;
+}
+
+.support-form .submit-button:hover {
+    border:1px solid  lightgreen ;
+    transform: scale(1.1);
+
 }
 
 .dashboard-container {
@@ -14,7 +119,6 @@ body {
     margin: 1rem;
     overflow: auto;
     height: auto;
-
 }
 
 .sidebar {
@@ -42,7 +146,6 @@ body {
 .sidebar .user-info img {
     width: 50px;
     height: 50px;
-
 }
 
 .sidebar:hover .user-info .IM_Logo img {
@@ -52,7 +155,7 @@ body {
 
 .name {
     margin-left: 15px;
-    font-family: 'DM Serif Display', serif;
+    font-family: "DM Serif Display", serif;
     font-size: 1.5rem;
     color: #2e7d32;
     text-decoration: none;
@@ -95,7 +198,8 @@ body {
     font-weight: 500;
     position: relative;
     overflow: hidden;
-    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out,
+        border 0.2s ease-in-out;
 }
 
 .menu li.active {
@@ -108,7 +212,8 @@ body {
     width: 30px;
     height: 30px;
     opacity: 0.7;
-    transition: opacity 0.4s ease-in-out, transform 0.8s ease-in-out, margin-right 0.8s ease-in-out;
+    transition: opacity 0.4s ease-in-out, transform 0.8s ease-in-out,
+        margin-right 0.8s ease-in-out;
 }
 
 .sidebar:hover .menu li img.menu-icon {
@@ -123,7 +228,8 @@ body {
 .menu li span {
     white-space: nowrap;
     opacity: 0;
-    transition: opacity 0.2s ease-in-out, margin-left 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, margin-left 0.2s ease-in-out,
+        transform 0.2s ease-in-out;
     margin-left: 0;
 }
 
@@ -140,13 +246,13 @@ body {
 }
 
 .menu li::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background:linear-gradient(to right, #ffffff9c, #6fe27583);
+    background: linear-gradient(to right, #ffffff9c, #6fe27583);
     z-index: -1;
     transition: left 0.8s ease-in-out;
 }
@@ -178,7 +284,8 @@ body {
     width: 30px;
     height: 30px;
     opacity: 0.7;
-    transition: margin-right 0.2s ease-in-out, opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transition: margin-right 0.2s ease-in-out, opacity 0.2s ease-in-out,
+        transform 0.2s ease-in-out;
 }
 
 .sidebar:hover .logout-form button.Logout img.menu-icon {
@@ -244,7 +351,6 @@ body {
 
 #homeContent .status {
     color: green;
-
 }
 .cards {
     display: flex;
@@ -328,7 +434,6 @@ body {
     align-items: center;
 }
 
-
 .info-card .infovalue {
     display: flex;
     flex-direction: column;
@@ -355,9 +460,7 @@ body {
     font-size: 0.9rem;
     color: #2d3748;
     box-sizing: border-box;
-    transition:
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     background-color: #f7fffb;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     padding-left: 1rem;
@@ -378,9 +481,7 @@ body {
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition:
-        background-color 0.3s ease,
-        box-shadow 0.3s ease,
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
         transform 0.6s ease;
     width: fit-content;
     margin-top: 2rem;
@@ -418,7 +519,7 @@ body {
         margin-bottom: 1rem;
     }
 
-    .info-card h1{
+    .info-card h1 {
         font-size: 2rem;
     }
 }
@@ -426,13 +527,6 @@ body {
 .info-card form .infovalue:nth-child(1) {
     grid-column: 1 / -1;
 }
-/* #tableContent {
-    padding: 25px;
-    border-radius: 10px;
-    margin: 20px auto;
-    max-width: 100%;
-    overflow: auto;
-} */
 
 #tableContent h2 {
     color: #48bb78;

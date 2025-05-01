@@ -18,7 +18,7 @@
         <div class="left-section">
             <img src="{{ asset('img/ecoshield.gif') }}">
             <h2>Segregation Trash Bin System</h2>
-            <p>Your contribution matters! Log in now to join our mission for a cleaner, greener planet—because every step counts toward a sustainable future. 🌍</p>
+            <p>Your contribution matters! Log in now to join our mission for a cleaner, greener planet. 🌍</p>
         </div>
         <div class="login-container">
             <div class="eco-icon">♻️</div>

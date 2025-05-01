@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NoneUser extends Model
+class MessageSupport extends Model
 {
-    protected $table = 'none_user';
+    protected $table = 'message_support';
     protected $fillable = [
+        'binnie_id',
         'first_name',
         'last_name',
         'username',

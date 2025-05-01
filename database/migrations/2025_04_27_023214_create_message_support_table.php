@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('none_user', function (Blueprint $table) {
+        Schema::create('message_support', function (Blueprint $table) {
             $table->id();
+            $table->integer('binnie_id')->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('username');
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('none_user');
+        Schema::dropIfExists('message_support');
     }
 };

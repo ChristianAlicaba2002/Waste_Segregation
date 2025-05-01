@@ -34,6 +34,8 @@ Route::post('/RegisterClient', [ClientController::class, 'RegisterClient'])->nam
 Route::post('/LoginClient', [ClientController::class , 'LoginClient'])->name('loginClient');
 Route::post('/UpdateClient' , [ClientController::class , 'UpdateUserInformation'])->name('update.client');
 Route::post('/LogoutClient', [ClientController::class , 'LogoutClient'])->name('LogoutClient');
+Route::post('/feedBackUser',[ClientController::class , 'ClientSupport'])->name('clientfeedback');
+
 
 
 // None User Controller

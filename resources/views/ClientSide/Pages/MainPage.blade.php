@@ -47,6 +47,10 @@
                     <img src="img/table.png" class="menu-icon" alt="Table Icon">
                     <span>Table Record</span>
                 </li>
+                <li onclick="showSection('supportContent')">
+                    <img src="img/support.png" class="menu-icon" alt="Support Icon">
+                    <span>Call Support</span>
+                </li>
             </ul>
         </nav>
         <div class="logout-form">
@@ -225,8 +229,26 @@
     </section>
 
     <!-- Table TrashBin -->
+    
     <section id="tableContent" class="section">
         <h2>TrashBin Record</h2>
+        <div class="table-legend-container">
+            <div class="table-legend">
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #e74c3c;"></span>
+                <span>Metal: 1</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #3498db;"></span>
+                <span>Plastic: 2</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #2ecc71;"></span>
+                <span>Paper: 3</span>
+            </div>
+            </div>
+        </div>
+    
         <table>
             <thead>
                 <tr>
@@ -236,29 +258,41 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($categories as $category)
                 <tr>
-                    <td>001</td>
-                    <td>Paper</td>
-                    <td>08:30 AM</td>
+                    <td>{{ $category->item_id }}</td>
+                    <td>{{ $category->category_id ? $category->category_id : 'No Category'}}</td>
+                    <td>{{ $category->updated_at }}</td>
                 </tr>
-                <tr>
-                    <td>002</td>
-                    <td>Plastic</td>
-                    <td>10:15 AM</td>
-                </tr>
-                <tr>
-                    <td>003</td>
-                    <td>Metal</td>
-                    <td>02:00 PM</td>
-                </tr>
-                <tr>
-                    <td>004</td>
-                    <td>Paper</td>
-                    <td>04:30 PM</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </section>
+
+    <!-- Support Message -->
+    <section id="supportContent" class="section">
+        <div class="support-container">
+            <h2>Contact Support</h2>
+            <p>We're here to help! Send us a message and we'll get back to you as soon as possible.</p>
+            <form action="{{ route('clientfeedback') }}" method="post" class="support-form">
+                @csrf
+                <h1>Binnie ID: {{ Auth::user()->binnie_id }}</h1>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="username" value="{{Auth::user()->username}}" placeholder="Your Email" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+     <style>
+     </style>
+
     </main>
     </div>
 

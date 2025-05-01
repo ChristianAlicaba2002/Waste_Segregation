@@ -37,6 +37,9 @@
     </nav>
 
     <section class="welcome-section">
+        <div class="image-container">
+            <img src="/img/main.jpg" alt="">
+        </div>
     <h1 class="welcome-title">Welcome to TrashBinnie</h1>
     <h2 class="welcome-subtitle">Improving household through the process of proper segregation.</h2>
     <a href="{{ route('registerPage') }}" class="btn-signin">Sign Up</a>
@@ -109,7 +112,7 @@
             <div class="product-card">
                 <img src="/img/product2.jpg" alt="">
             </div>
-                        <div class="product-card">
+            <div class="product-card">
                 <img src="/img/product1.jpg" alt="">
             </div>
             <div class="product-card">
