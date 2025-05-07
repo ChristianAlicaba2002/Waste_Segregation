@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('waste_category', function (Blueprint $table) {
-            $table->string('category_id')->primary();
-            $table->string('category_name');
+        Schema::create('trash_binnie', function (Blueprint $table) {
+            $table->integer('trash_binnie_id')->primary();
             $table->timestamps();
         });
     }
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('waste_category');
+        Schema::dropIfExists('trash_binnie');
     }
 };

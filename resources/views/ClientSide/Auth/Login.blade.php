@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles/Login.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Segregation Trash Bin Log In</title>
+</head>
+
+<body>
+    <a href="{{ route('view') }}" class="back-button" aria-label="Go back">
+        <i class="fas fa-circle-chevron-left"></i>
+    </a>
+
+    <div class="page-container">
+        <div class="left-section">
+            <img src="{{ asset('img/ecoshield.gif') }}">
+            <h2>Segregation Trash Bin System</h2>
+            <p>Your contribution matters! Log in now to join our mission for a cleaner, greener planet. 🌍</p>
+        </div>
+        <div class="login-container">
+            <div class="eco-icon">♻️</div>
+            <h1>Welcome Back!</h1>
+            <form action="/LoginClient" id="formAction" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="binnie_id"></label>
+                    <input type="text" id="binnie_id" name="binnie_id" maxlength="6" placeholder="Binnie ID" autocomplete="off">
+                    @if (session('notFoundBinnieID'))
+                        <label class="ErrorMessage" for="">{{ session('notFoundBinnieID') }}</label>
+                        <script>
+                            document.getElementById('username').style.border = '1px solid red'
+                        </script>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="username"></label>
+                    <input type="username" id="username" name="username" required placeholder="Username">
+                    @if (session('error'))
+                        <label class="ErrorMessage" for="">{{ session('error') }}</label>
+                        <script>
+                            document.getElementById('username').style.border = '1px solid red'
+                        </script>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" required placeholder="Password" autocomplete="off">
+                    <i class="fa fa-eye toggle-icon" id="togglePassword"></i>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <a href="{{ route('registerPage') }}" class="register-link">Don't have an account? Register here</a>
+        </div>
+    </div>
+
+    <script>
+
+         setTimeout(() => {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.style.animation = 'slideOut 0.5s ease-out forwards';
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 5000);
+
+        const passwordInput = document.getElementById("password");
+    const toggleIcon = document.getElementById("togglePassword");
+
+
+    toggleIcon.style.display = "none";
+
+        passwordInput.addEventListener("input", function () {
+        toggleIcon.style.display = this.value.length > 0 ? "block" : "none";
+        });
+
+    toggleIcon.addEventListener("click", function () {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.classList.replace("fa-eye", "fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.classList.replace("fa-eye-slash", "fa-eye");
+        }
+});
+
+    </script>
+</body>
+</html>

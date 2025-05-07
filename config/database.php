@@ -111,6 +111,19 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+        'mysql_waste_admin' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_WASTE_ADMIN', '127.0.0.1'),
+            'port' => env('DB_PORT_WASTE_ADMIN', '3306'),
+            'database' => env('DB_DATABASE_WASTE_ADMIN', 'waste_segregation_admin'),
+            'username' => env('DB_USERNAME_WASTE_ADMIN', 'root'),
+            'password' => env('DB_PASSWORD_WASTE_ADMIN', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
 
     ],
 
